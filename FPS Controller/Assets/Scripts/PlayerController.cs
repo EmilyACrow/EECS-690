@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _speedModifier = 7.0f;
+    [SerializeField] private float _groundSpeedModifier = 7.0f;
+    [SerializeField] private float _airSpeedModifier = 3.0f;
     [SerializeField] private float _mouseVertSensitivity = 70.0f;
     [SerializeField] private float _mouseHorzSensitivity = 15.0f;
     [SerializeField] private float _minXRotation = -70.0f;
     [SerializeField] private float _maxXRotation = 80.0f;
     [SerializeField] private float _gravity = -9.8f;
     [SerializeField] private float _jumpHeight = 2.0f;
+    [SerializeField] private Transform ceilingCheck;
+    [SerializeField] private float ceilingCheckDistance = 0.5f;
+    [SerializeField] private LayerMask ceilingMask;
 
     //Struct for storing player inputs from update loop
     struct PlayerInput {
@@ -23,7 +27,6 @@ public class PlayerController : MonoBehaviour
             this.vertical = v;
             this.jump = j;
         }
-
     }
 
     private Vector3 _playerVelocity;
@@ -33,8 +36,6 @@ public class PlayerController : MonoBehaviour
     private float _jumpVelocity;
     private PlayerInput _input;
     private float _groundStickyVelocity = -1.0f;
-    private bool amIGrounded;
-    
     
 
     // Start is called before the first frame update
@@ -56,13 +57,15 @@ public class PlayerController : MonoBehaviour
     // Player inputs are caught here and handled in FixedUpdate()
     void Update()
     {
-        amIGrounded = _characterController.isGrounded;
         GetPlayerInput();
         PlayerLook();
     }
 
     private void FixedUpdate() {
-        PlayerMovement();
+        PlayerMovementHorizontal();
+        PlayerMovementVertical();
+        //Move player
+        _characterController.Move(_playerVelocity * Time.deltaTime);
     }
 
     private void GetPlayerInput() {
@@ -76,18 +79,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void PlayerMovement() {
+    private void PlayerMovementHorizontal() {
         //COnvert captured inputs into movement vector
         Vector3 movement = transform.right * _input.horizontal + transform.forward * _input.vertical;
         //Normalize input vector to prevent diagonal movement from being faster
         movement = Vector3.ClampMagnitude(movement, 1.0f);
-        //Multiply speed vector by speed modifier so that it doesn't affect gravity
-        movement *=  _speedModifier;
+        if(_characterController.isGrounded) {
+            //Multiply speed vector by speed modifier so that it doesn't affect gravity
+            movement *= _groundSpeedModifier;
+        } else {
+            movement *= _airSpeedModifier;
+        }
 
         //Set player's horizontal velocity to inputs
         _playerVelocity.x = movement.x;
-        _playerVelocity.z = movement.z;
-        
+        _playerVelocity.z = movement.z;        
+    }
+
+    private void PlayerMovementVertical() {
         //If the character is on the ground, apply a small downward force
         if(_characterController.isGrounded) {
             _playerVelocity.y = _groundStickyVelocity;
@@ -98,13 +107,12 @@ public class PlayerController : MonoBehaviour
 
         //Check if player is trying to jump
         if(_input.jump) {
-            Debug.Log("Jumping:" + _jumpVelocity);
             PlayerJump();
             _input.jump = false;
         }
 
-        //Move player
-        _characterController.Move(_playerVelocity * Time.deltaTime);
+        //Check if ceiling collision
+        CheckCeiling();
     }
 
     private void PlayerLook() {
@@ -126,6 +134,15 @@ public class PlayerController : MonoBehaviour
     private void PlayerJump() {
         if(_characterController.isGrounded) {
             _playerVelocity.y += _jumpVelocity;
+        }
+    }
+
+    private void CheckCeiling() {
+        if(Physics.CheckSphere(ceilingCheck.position, ceilingCheckDistance, ceilingMask)) {
+            //We're touching the ceiling! If we have a positive y velocity, set it to zero
+            if(_playerVelocity.y > 0) {
+                _playerVelocity.y = 0.0f;
+            }
         }
     }
 
