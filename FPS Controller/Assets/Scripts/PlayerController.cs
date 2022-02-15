@@ -71,7 +71,9 @@ public class PlayerController : MonoBehaviour
         _input.vertical = Input.GetAxis("Vertical");
 
         //Spacebar or joystick axis 3
-        _input.jump = Input.GetButtonDown("Jump");
+        if(!_input.jump && Input.GetButtonDown("Jump")) {
+            _input.jump = true;
+        }
     }
 
     private void PlayerMovement() {
@@ -91,13 +93,14 @@ public class PlayerController : MonoBehaviour
             _playerVelocity.y = _groundStickyVelocity;
         } else {
             //Apply a larger gravitational force if not grounded
-            _playerVelocity.y += _gravity;
+            _playerVelocity.y += _gravity * Time.deltaTime;
         }
 
         //Check if player is trying to jump
         if(_input.jump) {
             Debug.Log("Jumping:" + _jumpVelocity);
             PlayerJump();
+            _input.jump = false;
         }
 
         //Move player

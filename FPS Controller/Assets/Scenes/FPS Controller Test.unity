@@ -28596,13 +28596,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390207768}
-  m_LocalRotation: {x: 0.42904615, y: 0.3530751, z: 0.6419861, w: 0.5283098}
-  m_LocalPosition: {x: 1, y: 2, z: 30}
+  m_LocalRotation: {x: 0.48858476, y: 0.27431417, z: 0.5979193, w: 0.5731748}
+  m_LocalPosition: {x: 1, y: 1.24, z: 30}
   m_LocalScale: {x: 0.25, y: 1, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 96.155}
+  m_LocalEulerAnglesHint: {x: 13.418, y: 65.137, z: 101.411}
 --- !u!4 &1397166196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4477030707949804, guid: 00debf980412c49418327c56a1a60db0, type: 3}
@@ -31398,8 +31398,8 @@ MonoBehaviour:
   _mouseHorzSensitivity: 50
   _minXRotation: -70
   _maxXRotation: 80
-  _gravity: -9.8
-  _jumpHeight: 4
+  _gravity: -24.5
+  _jumpHeight: 2
 --- !u!143 &1584429348
 CharacterController:
   m_ObjectHideFlags: 0
