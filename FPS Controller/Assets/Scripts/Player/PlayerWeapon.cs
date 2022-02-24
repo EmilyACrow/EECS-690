@@ -13,6 +13,7 @@ public class PlayerWeapon : MonoBehaviour
     // Start is called before the first frame update
 
     private bool _isFiring = false;
+    private float _bulletLifetime = 2.0f;
 
     // Update is called once per frame
     void Update()
@@ -41,7 +42,10 @@ public class PlayerWeapon : MonoBehaviour
                 Random.Range(0, 360) 
             );
             //Instantiate bullet
-            GameObject bullet = Instantiate(_bullet, _bulletSpawnPoint.transform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(_bullet, 
+                _bulletSpawnPoint.transform.position, 
+                Quaternion.Euler(transform.eulerAngles.x + 90, transform.eulerAngles.y, transform.eulerAngles.z));
+            bullet.SendMessage("StartWithParameters", _bulletLifetime);
             //FIre bullet in the direction
             bullet.GetComponent<Rigidbody>().velocity = _bulletSpawnPoint.transform.forward * _bulletVelocity * Time.deltaTime;
             yield return new WaitForSeconds(_rateOfFire);

@@ -7,15 +7,19 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(Cleanup());
+        
     }
 
     void Update() {
         
     }
 
-    IEnumerator Cleanup() {
-        yield return new WaitForSeconds(3f);
+    void StartWithParameters(float time) {
+        StartCoroutine(Cleanup(time));
+    }
+
+    IEnumerator Cleanup(float time) {
+        yield return new WaitForSeconds(time);
         Destroy(this.gameObject);
     }
 }
