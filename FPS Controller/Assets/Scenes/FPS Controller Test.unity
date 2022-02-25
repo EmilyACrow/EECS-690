@@ -32717,6 +32717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063f72a620a231e4cb6e8b0ee1b1162a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weapon: {fileID: 1755892531741812117, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
   _weapons: []
   _bullet: {fileID: 3406506522631423799, guid: 76f7415127b5ea94abc5e26cb074f1e3, type: 3}
   _bulletSpawnPoint: {fileID: 1931596123}

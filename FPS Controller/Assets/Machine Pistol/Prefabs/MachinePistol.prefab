@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
+  - component: {fileID: 6949310069933252383}
   m_Layer: 0
   m_Name: MachinePistol
   m_TagString: Untagged
@@ -83,6 +84,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6949310069933252383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e930589feb27984f897b1df0540cc96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _model: {fileID: 100000}
+  _bullet: {fileID: 3406506522631423799, guid: 76f7415127b5ea94abc5e26cb074f1e3, type: 3}
+  _bulletSpawnPoint: {fileID: 4462139292573136438}
+  _muzzleFlash: {fileID: 7352412673507385876}
+  _rateOfFire: 0.2
+  _bulletVelocity: 1500
 --- !u!1 &4462139292573136438
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +201,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d1f8bf3fbf1b454ba9dbdb8afbe0882, type: 3}
+--- !u!1 &7352412673507385876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 4d1f8bf3fbf1b454ba9dbdb8afbe0882, type: 3}
+  m_PrefabInstance: {fileID: 7352412673507419316}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7352412673507294772 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 4d1f8bf3fbf1b454ba9dbdb8afbe0882, type: 3}
