@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 4551965065086012879}
   - component: {fileID: 3693213918353440484}
   - component: {fileID: 2528386004569710324}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MachinePistol_MuzzleFlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
