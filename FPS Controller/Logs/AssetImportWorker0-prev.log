@@ -11,19 +11,19 @@ E:\Program Files\Unity\Editor\Unity.exe
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/zhc19/Downloads/FPS Controller
+C:/Users/zhc19/Downloads/GitHub/EECS-690/FPS Controller
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-12408
-Successfully changed project path to: C:/Users/zhc19/Downloads/FPS Controller
-C:/Users/zhc19/Downloads/FPS Controller
+2176
+Successfully changed project path to: C:/Users/zhc19/Downloads/GitHub/EECS-690/FPS Controller
+C:/Users/zhc19/Downloads/GitHub/EECS-690/FPS Controller
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 52.54 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 52.61 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.19f1 (68f137dc9bbe)
 [Subsystems] Discovering subsystems at path E:/Program Files/Unity/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/zhc19/Downloads/FPS Controller/Assets
+[Subsystems] Discovering subsystems at path C:/Users/zhc19/Downloads/GitHub/EECS-690/FPS Controller/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
@@ -35,36 +35,36 @@ Initialize mono
 Mono path[0] = 'E:/Program Files/Unity/Editor/Data/Managed'
 Mono path[1] = 'E:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'E:/Program Files/Unity/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56176
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56172
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: E:/Program Files/Unity/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003325 seconds.
+Registered in 0.003030 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 47.90 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 50.26 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.945 seconds
+- Completed reload, in  0.960 seconds
 Domain Reload Profiling:
-	ReloadAssembly (945ms)
+	ReloadAssembly (960ms)
 		BeginReloadAssembly (55ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (404ms)
-			LoadAssemblies (53ms)
+		EndReloadAssembly (411ms)
+			LoadAssemblies (52ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (141ms)
+			SetupTypeCache (144ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (28ms)
-			SetupLoadedEditorAssemblies (162ms)
+			RebuildScriptCaches (30ms)
+			SetupLoadedEditorAssemblies (164ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (3ms)
+				InitializePlatformSupportModulesInManaged (4ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (48ms)
-				BeforeProcessingInitializeOnLoad (10ms)
+				RefreshPlugins (50ms)
+				BeforeProcessingInitializeOnLoad (9ms)
 				ProcessInitializeOnLoadAttributes (73ms)
 				ProcessInitializeOnLoadMethodAttributes (27ms)
 				AfterProcessingInitializeOnLoad (0ms)
@@ -73,51 +73,51 @@ Domain Reload Profiling:
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.005900 seconds.
+Registered in 0.006028 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.45 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.82 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.968 seconds
+- Completed reload, in  1.021 seconds
 Domain Reload Profiling:
-	ReloadAssembly (969ms)
-		BeginReloadAssembly (136ms)
+	ReloadAssembly (1022ms)
+		BeginReloadAssembly (140ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
+			DisableScriptedObjects (5ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (17ms)
-		EndReloadAssembly (771ms)
-			LoadAssemblies (92ms)
+			CreateAndSetChildDomain (18ms)
+		EndReloadAssembly (816ms)
+			LoadAssemblies (93ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (251ms)
+			SetupTypeCache (262ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (41ms)
-			SetupLoadedEditorAssemblies (300ms)
+			RebuildScriptCaches (44ms)
+			SetupLoadedEditorAssemblies (323ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
-				SetLoadedEditorAssemblies (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (1ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (73ms)
-				ProcessInitializeOnLoadAttributes (209ms)
+				BeforeProcessingInitializeOnLoad (84ms)
+				ProcessInitializeOnLoadAttributes (218ms)
 				ProcessInitializeOnLoadMethodAttributes (5ms)
 				AfterProcessingInitializeOnLoad (8ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (6ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
-Refreshing native plugins compatible for Editor in 0.44 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.46 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1875 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 87.7 MB.
 System memory in use after: 87.7 MB.
 
 Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 2313.
-Total: 2.825800 ms (FindLiveObjects: 0.178100 ms CreateObjectMapping: 0.061100 ms MarkObjects: 2.492500 ms  DeleteObjects: 0.093000 ms)
+Total: 2.633700 ms (FindLiveObjects: 0.171800 ms CreateObjectMapping: 0.064400 ms MarkObjects: 2.295100 ms  DeleteObjects: 0.100700 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -131,41 +131,161 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets
-  artifactKey: Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets using Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42d402b061de3733987d63b9cc3b64de') in 0.007367 seconds 
-  Import took 0.009937 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 35.333152 seconds.
-  path: Assets/HealthBar.prefab
+  path: Assets/Prefabs/UI/HealthBar.prefab
   artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5a385237a2ba64a782e183a3aaafcae') in 0.073437 seconds 
-  Import took 0.076156 seconds .
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e863d199d21fddd082ada31c3fe7d1be') in 0.076017 seconds 
+  Import took 0.079087 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 13.965892 seconds.
-  path: Assets/HealthBar.prefab
+  Time since last request: 9.282495 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
   artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a200972eca85b7e263d0628f9287db8f') in 0.019529 seconds 
-  Import took 0.024341 seconds .
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4906e9b74b69170dd75b1f2cf10ac853') in 0.008042 seconds 
+  Import took 0.011122 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 7.263587 seconds.
-  path: Assets/HealthBar.prefab
+  Time since last request: 4.826718 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
   artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfd06f32b668aae4223fe8298ba1ab55') in 0.007671 seconds 
-  Import took 0.010413 seconds .
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e6f1058a9c42a0974802b1bdbf6eb6f') in 0.007718 seconds 
+  Import took 0.011231 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 29.784261 seconds.
-  path: Assets/Prefabs/UI/GameHUD.prefab
-  artifactKey: Guid(092e9c5d9939f4f4b80455a2d0103720) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/UI/GameHUD.prefab using Guid(092e9c5d9939f4f4b80455a2d0103720) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '241ee7c449ecae08955c7103d8354af6') in 0.103268 seconds 
-  Import took 0.106225 seconds .
+  Time since last request: 5.640501 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f358dab3f44510e83e5db20174730abb') in 0.007906 seconds 
+  Import took 0.011348 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.561950 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c1668ce5b5f45e9d33278718fce49b9') in 0.006713 seconds 
+  Import took 0.009717 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.463020 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4fc2f6505e7d2ce73d794c005d19bd0') in 0.006507 seconds 
+  Import took 0.009422 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.470482 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48f459b0f59e18ed94733e9921bfefa3') in 0.006799 seconds 
+  Import took 0.010135 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.252384 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ce495884c3f68165d2dee80ab9a8221') in 0.007268 seconds 
+  Import took 0.010179 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.260202 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '06347fdb9dbc5194dcb0913d2f50329a') in 0.006543 seconds 
+  Import took 0.009622 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 13.908224 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '959224c8f5e581e59c8610003b824001') in 0.007612 seconds 
+  Import took 0.010516 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.765146 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6761996dc301380d886174b50201122') in 0.006048 seconds 
+  Import took 0.008772 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.632864 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e42421ad235d218503c03165a493514') in 0.006524 seconds 
+  Import took 0.009561 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.844931 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a98f8d8886335b6fa1882ddbbf8e147') in 0.006912 seconds 
+  Import took 0.009979 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.430015 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4289fda0933030c1952c3e90a9c7e2f5') in 0.007091 seconds 
+  Import took 0.010615 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.196158 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a74c12b5c31fda03b2c7ff81e98c49d') in 0.006795 seconds 
+  Import took 0.009575 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.799521 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa7861c1c3c092ff73497cd878d3f9ce') in 0.007418 seconds 
+  Import took 0.010736 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.399212 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae1c86d99c4aafaa6b0d0961ee4d358f') in 0.006327 seconds 
+  Import took 0.009826 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 15.524057 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1bf0e0633c7bcdbece1ccbda28dc35de') in 0.007844 seconds 
+  Import took 0.012278 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 21.372028 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd1dd739864f1643a34924540548cb3b0') in 0.007512 seconds 
+  Import took 0.010918 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.698207 seconds.
+  path: Assets/Prefabs/UI/HealthBar.prefab
+  artifactKey: Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/HealthBar.prefab using Guid(8f0f4894e62877f4f87c789b5a445d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a1742d4735298d8697e95bfd90b1baa') in 0.009206 seconds 
+  Import took 0.011982 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
