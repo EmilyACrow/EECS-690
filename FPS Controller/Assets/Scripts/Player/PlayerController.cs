@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
 
-public class PlayerController : NetworkBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _groundSpeedModifier = 7.0f;
     [SerializeField] private float _airSpeedModifier = 3.0f;
