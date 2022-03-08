@@ -15,6 +15,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform ceilingCheck;
     [SerializeField] private float ceilingCheckDistance = 0.5f;
     [SerializeField] private LayerMask ceilingMask;
+    [SerializeField] private bool useFootsteps = true;
+
+    [Header("Footstep Parameters")]
+    [SerializeField] private float baseStepSpeed = 0.5f;
+    [SerializeField] private float crouchStepMult = 1.5f;
+    [SerializeField] private float sprintStepMult = 0.6f;
+    [SerializeField] private AudioSource footstepAudioSource = default;
+    [SerializeField] private AudioClip[] grassClips = default;
+    [SerializeField] private AudioClip[] metalClips = default;
+    [SerializeField] private AudioClip[] bareClips = default;
+    private float footstepTimer = 0;
+    //private float getCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMult : isSprinting ? baseStepSpeed * sprintStepMult : baseStepSpeed;
+    private float getCurrentOffset => baseStepSpeed;
+    private Vector2 currentInput;
+
 
     //Struct for storing player inputs from update loop
     struct PlayerInput {
@@ -59,6 +74,10 @@ public class PlayerController : MonoBehaviour
     {
         GetPlayerInput();
         PlayerLook();
+
+        if(useFootsteps){
+            Handle_Footsteps();
+        }
     }
 
     private void FixedUpdate() {
@@ -143,6 +162,30 @@ public class PlayerController : MonoBehaviour
             if(_playerVelocity.y > 0) {
                 _playerVelocity.y = 0.0f;
             }
+        }
+    }
+
+    private void Handle_Footsteps(){
+        if(!_characterController.isGrounded) return;
+        if(_playerVelocity == Vector3.zero) return; //This is probably what needs to be changed. If velocity == zero, no sound should play
+
+        footstepTimer -= Time.deltaTime;
+
+        if(footstepTimer <= 0){
+            if(Physics.Raycast(_camera.transform.position, Vector3.down, out RaycastHit hit, 3)){
+                switch(hit.collider.tag){
+                    case "Footsteps/GRASS":
+                        footstepAudioSource.PlayOneShot(grassClips[Random.Range(0, grassClips.Length-1)]);
+                        break;
+                    case "Footsteps/METAL":
+                        footstepAudioSource.PlayOneShot(metalClips[Random.Range(0, metalClips.Length-1)]);
+                        break;
+                    default:
+                        footstepAudioSource.PlayOneShot(bareClips[Random.Range(0, bareClips.Length-1)]);
+                        break;
+                }
+            }
+            footstepTimer = getCurrentOffset;
         }
     }
 
