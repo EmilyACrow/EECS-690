@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     private float footstepTimer = 0;
     //private float getCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMult : isSprinting ? baseStepSpeed * sprintStepMult : baseStepSpeed;
     private float getCurrentOffset => baseStepSpeed;
-    private Vector2 currentInput;
 
 
     //Struct for storing player inputs from update loop
@@ -51,8 +50,9 @@ public class PlayerController : MonoBehaviour
     private float _jumpVelocity;
     private PlayerInput _input;
     private float _groundStickyVelocity = -1.0f;
+    private Vector2 _currentInput; //jake-dev
+    private Vector3 _moveDirection; //jake-dev
     
-
     // Start is called before the first frame update
     void Start()
     {
