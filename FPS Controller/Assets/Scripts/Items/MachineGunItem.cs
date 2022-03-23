@@ -15,7 +15,6 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     private float _bulletLifetime = 2.0f;
     private float _muzzleFlareTime = 0.1f;
 
-    //Jake testing
     [SerializeField] private AudioSource testAudio = default;
     [SerializeField] private AudioClip[] testAudio2 = default;
 
@@ -58,7 +57,7 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     IEnumerator Firing () {
         while(_isFiring) {
 
-            testAudio.PlayOneShot(testAudio2[Random.Range(0, testAudio2.Length-1)]); //Testing
+            testAudio.PlayOneShot(testAudio2[Random.Range(0, testAudio2.Length-1)]); //Sound generation
 
             //Rotate muzzle flash
             _muzzleFlash.transform.eulerAngles = new Vector3(

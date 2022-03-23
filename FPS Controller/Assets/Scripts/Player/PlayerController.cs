@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform ceilingCheck;
     [SerializeField] private float ceilingCheckDistance = 0.5f;
     [SerializeField] private LayerMask ceilingMask;
-    [SerializeField] private bool useFootsteps = true;
+    [SerializeField] private float _walkSpeed = 3.0f;
+    [SerializeField] private bool _useFootsteps = true;
+    [SerializeField] public bool _canMove = true;
 
     [Header("Footstep Parameters")]
     [SerializeField] private float baseStepSpeed = 0.5f;
@@ -26,9 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip[] metalClips = default;
     [SerializeField] private AudioClip[] bareClips = default;
     private float footstepTimer = 0;
-    //private float getCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMult : isSprinting ? baseStepSpeed * sprintStepMult : baseStepSpeed;
     private float getCurrentOffset => baseStepSpeed;
-
 
     //Struct for storing player inputs from update loop
     struct PlayerInput {
@@ -72,12 +72,8 @@ public class PlayerController : MonoBehaviour
     // Player inputs are caught here and handled in FixedUpdate()
     void Update()
     {
-        GetPlayerInput();
-        PlayerLook();
-
-        if(useFootsteps){
-            Handle_Footsteps();
-        }
+            GetPlayerInput();
+            PlayerLook();
     }
 
     private void FixedUpdate() {
@@ -91,10 +87,14 @@ public class PlayerController : MonoBehaviour
         // WASD or joystick
         _input.horizontal = Input.GetAxis("Horizontal");
         _input.vertical = Input.GetAxis("Vertical");
+        _currentInput = new Vector2(_walkSpeed * Input.GetAxis("Vertical"), _walkSpeed * Input.GetAxis("Horizontal"));
 
         //Spacebar or joystick axis 3
         if(!_input.jump && Input.GetButtonDown("Jump")) {
             _input.jump = true;
+        }
+        if(_useFootsteps){
+            Handle_Footsteps();
         }
     }
 
@@ -167,7 +167,7 @@ public class PlayerController : MonoBehaviour
 
     private void Handle_Footsteps(){
         if(!_characterController.isGrounded) return;
-        if(_playerVelocity == Vector3.zero) return; //This is probably what needs to be changed. If velocity == zero, no sound should play
+        if( _currentInput == Vector2.zero) return; //This is probably what needs to be changed. If velocity == zero, no sound should play
 
         footstepTimer -= Time.deltaTime;
 
