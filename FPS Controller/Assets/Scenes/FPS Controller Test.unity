@@ -45226,7 +45226,7 @@ PrefabInstance:
     - target: {fileID: 4568480191097407987, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
       propertyPath: testAudio2.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 50800f18d414acc4885fe3dce4a3c0dc, type: 3}
+      objectReference: {fileID: 8300000, guid: afe48e4242dd56140974fc39f4bff1a2, type: 3}
     - target: {fileID: 7378884098527963871, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
       propertyPath: m_Name
       value: MachinePistol_V2
