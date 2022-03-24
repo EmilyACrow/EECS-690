@@ -1,148 +1,221 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
-    [SerializeField] private float _groundSpeedModifier = 7.0f;
-    [SerializeField] private float _airSpeedModifier = 3.0f;
-    [SerializeField] private float _mouseVertSensitivity = 70.0f;
-    [SerializeField] private float _mouseHorzSensitivity = 15.0f;
-    [SerializeField] private float _minXRotation = -70.0f;
-    [SerializeField] private float _maxXRotation = 80.0f;
-    [SerializeField] private float _gravity = -9.8f;
-    [SerializeField] private float _jumpHeight = 2.0f;
+    private NetworkVariable<Vector3> networkMovement = new NetworkVariable<Vector3>();
+    private NetworkVariable<float> networkRotation = new NetworkVariable<float>();
+
+    [SerializeField] private Vector2 defaultPositionRange = new Vector2(-4, 4);
+    private Vector3 defaultPosition = new Vector3(1,1,35);
+
+    [SerializeField] private float groundSpeedModifier = 7.0f;
+    [SerializeField] private float airSpeedModifier = 3.0f;
+    [SerializeField] private float walkSpeed = 7.0f;
+    [SerializeField] private float gravity = -9.8f;
+    [SerializeField] private float stickToGroundForce = -1.0f;
+    [SerializeField] private float jumpHeight = 2.0f;
     [SerializeField] private Transform ceilingCheck;
     [SerializeField] private float ceilingCheckDistance = 0.5f;
     [SerializeField] private LayerMask ceilingMask;
 
-    //Struct for storing player inputs from update loop
-    struct PlayerInput {
-        public float horizontal;
-        public float vertical;
-        public bool jump;
+    private CharacterController characterController;
+    private PlayerInput input;
+    private Vector3 inputMovement = Vector3.zero;  
+    private float cachedRotation; 
+    private float currentRotation;
+    private float jumpVelocity;
 
-        public PlayerInput(float h, float v, bool j) {
-            this.horizontal = h;
-            this.vertical = v;
-            this.jump = j;
-        }
+    // Awake is called before Start
+    private void Awake() {
+        characterController = GetComponent<CharacterController>();
     }
-
-    private Vector3 _playerVelocity;
-    private float _xRotation = 0.0f;
-    private CharacterController _characterController;
-    private Camera _camera;
-    private float _jumpVelocity;
-    private PlayerInput _input;
-    private float _groundStickyVelocity = -1.0f;
-    
 
     // Start is called before the first frame update
     void Start()
     {
-        _characterController = GetComponent<CharacterController>();
-        _camera = Camera.main;
-        _jumpVelocity = Mathf.Sqrt(_jumpHeight * _gravity * -2);
-        _input = new PlayerInput(0.0f,0.0f,false);
+        if (IsClient && IsOwner)
+        {
+            transform.position = new Vector3(Random.Range(defaultPositionRange.x, defaultPositionRange.y) + defaultPosition.x, 
+                defaultPosition.y,
+                Random.Range(defaultPositionRange.x, defaultPositionRange.y) + defaultPosition.z);
+                   
+            input = new PlayerInput(0.0f,0.0f,false);
 
-        if (_characterController == null) {
-            Debug.Log("No character controller attached to player.\n");
+            PlayerCameraFollow.Instance.FollowPlayer(transform.Find("CameraTransform"));
+
+            cachedRotation = Camera.main.transform.localEulerAngles.y;
+
+            jumpVelocity = Mathf.Sqrt(jumpHeight * gravity * -2);
         }
-
-        Cursor.lockState = CursorLockMode.Locked;
+        
     }
 
     // Update is called once per frame
-    // Player inputs are caught here and handled in FixedUpdate()
     void Update()
     {
-        GetPlayerInput();
-        PlayerLook();
+        if(IsClient && IsOwner) {
+            UpdateClient();
+        } else if (IsServer){
+            UpdateServer();
+        }
     }
 
-    private void FixedUpdate() {
-        PlayerMovementHorizontal();
-        PlayerMovementVertical();
-        //Move player
-        _characterController.Move(_playerVelocity * Time.deltaTime);
-    }
-
-    private void GetPlayerInput() {
-        // WASD or joystick
-        _input.horizontal = Input.GetAxis("Horizontal");
-        _input.vertical = Input.GetAxis("Vertical");
-
-        //Spacebar or joystick axis 3
-        if(!_input.jump && Input.GetButtonDown("Jump")) {
-            _input.jump = true;
+    private void UpdateClient() {
+        if (IsClient && IsOwner)
+        {
+            inputMovement = Vector3.zero;
+            input.inputDetected = false;
+            //Get Player input
+            GetPlayerInput();
+            GetCameraRotation();
+            if(input.inputDetected) {
+                PlayerMovementHorizontal();
+            }
+            if(input.inputDetected || !characterController.isGrounded) {
+                PlayerMovementVertical();
+            }
+            //If input has changed, update client position on server
+            if(inputMovement != Vector3.zero || currentRotation != cachedRotation) {
+                inputMovement *=  walkSpeed * Time.deltaTime;
+                cachedRotation = currentRotation;
+                UpdateClientPositionRotationServerRpc(inputMovement, currentRotation);
+            }
+            PlayerMove();
         }
     }
 
     private void PlayerMovementHorizontal() {
         //COnvert captured inputs into movement vector
-        Vector3 movement = transform.right * _input.horizontal + transform.forward * _input.vertical;
+        Vector3 movement = transform.right * input.horizontal + transform.forward * input.vertical;
         //Normalize input vector to prevent diagonal movement from being faster
         movement = Vector3.ClampMagnitude(movement, 1.0f);
-        if(_characterController.isGrounded) {
+        if(characterController.isGrounded) {
             //Multiply speed vector by speed modifier so that it doesn't affect gravity
-            movement *= _groundSpeedModifier;
+            movement *= groundSpeedModifier;
         } else {
-            movement *= _airSpeedModifier;
+            movement *= airSpeedModifier;
         }
 
         //Set player's horizontal velocity to inputs
-        _playerVelocity.x = movement.x;
-        _playerVelocity.z = movement.z;        
+        inputMovement.x = movement.x;
+        inputMovement.z = movement.z;      
+    }    
+
+    private void UpdateServer() {
+        transform.position = new Vector3(transform.position.x + networkMovement.Value.x, transform.position.y,
+            transform.position.z + networkMovement.Value.z);
     }
 
     private void PlayerMovementVertical() {
-        //If the character is on the ground, apply a small downward force
-        if(_characterController.isGrounded) {
-            _playerVelocity.y = _groundStickyVelocity;
+        if (!characterController.isGrounded) {
+            inputMovement.y += gravity * Time.deltaTime;
         } else {
-            //Apply a larger gravitational force if not grounded
-            _playerVelocity.y += _gravity * Time.deltaTime;
+            inputMovement.y = stickToGroundForce;
         }
 
         //Check if player is trying to jump
-        if(_input.jump) {
+        if(input.jump) {
             PlayerJump();
-            _input.jump = false;
+            input.jump = false;
         }
 
         //Check if ceiling collision
         CheckCeiling();
     }
 
-    private void PlayerLook() {
-        //Get mouse input
-        float mouseX = Input.GetAxis("Mouse X") * _mouseVertSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * _mouseVertSensitivity * Time.deltaTime;
+    private void GetPlayerInput() {
+        // WASD or joystick
+        input.horizontal = Input.GetAxis("Horizontal");
+        input.vertical = Input.GetAxis("Vertical");
 
-        //Limit vertical look
-        _xRotation -= mouseY;
-        _xRotation = Mathf.Clamp(_xRotation, _minXRotation, _maxXRotation);
+        //Spacebar or joystick axis 3
+        if(!input.jump && Input.GetButtonDown("Jump")) {
+            input.inputDetected = true;
+            input.jump = true;
+        }
 
-        //Move camera horizontally
-        _camera.transform.localRotation = Quaternion.Euler(_xRotation,0,0);
-        //Rotate player
-        transform.Rotate(Vector3.up * mouseX * _mouseHorzSensitivity * Time.deltaTime); 
+        if (!input.inputDetected && (input.horizontal != 0 || input.vertical != 0)) {
+            input.inputDetected = true;
+        }
+
+        if(Input.GetMouseButtonDown(1)) {
+            ToggleMouse();
+        }
+
+    }
+
+    private void GetCameraRotation() {
+        //get rotation of camera
+        currentRotation = Camera.main.transform.localEulerAngles.y;
+        RotatePlayer(Quaternion.Euler(0,currentRotation, 0));
+    }
+
+    private void RotatePlayer(Quaternion euler) {
+        transform.localRotation = euler;
+    }
+
+    private void PlayerMove() {
+        if (networkMovement.Value != Vector3.zero) {
+            characterController.Move(networkMovement.Value);
+        }
     }
 
     //If the player can jump, add the jump velocity to the player controller
     private void PlayerJump() {
-        if(_characterController.isGrounded) {
-            _playerVelocity.y += _jumpVelocity;
+        if(characterController.isGrounded) {
+            inputMovement.y += jumpVelocity;
         }
     }
 
     private void CheckCeiling() {
         if(Physics.CheckSphere(ceilingCheck.position, ceilingCheckDistance, ceilingMask)) {
             //We're touching the ceiling! If we have a positive y velocity, set it to zero
-            if(_playerVelocity.y > 0) {
-                _playerVelocity.y = 0.0f;
+            if(inputMovement.y > 0) {
+                inputMovement.y = 0.0f;
             }
+        }
+    }
+
+    private void ToggleMouse() {
+        if(input.cursorLocked) {
+            Cursor.lockState = CursorLockMode.None;
+            input.cursorLocked = false;
+        } else {
+            Cursor.lockState = CursorLockMode.Locked;
+            input.cursorLocked = true;
+        }
+    }
+
+    [ServerRpc]
+    public void UpdateClientPositionRotationServerRpc(Vector3 pos, float rot) 
+    {
+        networkMovement.Value = pos;
+        networkRotation.Value = rot;
+    }
+
+    [ServerRpc]
+    public void UpdateClientPositionServerRpc(Vector3 pos) 
+    {
+        networkMovement.Value = pos;
+    }
+
+    //========================================================================
+    struct PlayerInput {
+        public float horizontal;
+        public float vertical;
+        public bool jump;
+        public bool inputDetected;
+        public bool cursorLocked;
+
+        public PlayerInput(float h, float v, bool j) {
+            this.horizontal = h;
+            this.vertical = v;
+            this.jump = j;
+            inputDetected = false;
+            cursorLocked = false;
         }
     }
 
