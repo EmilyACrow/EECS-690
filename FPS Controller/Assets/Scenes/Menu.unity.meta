@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FPS Controller/Assets/Scenes/Menu.unity.meta
 guid: 9f4acd373a12faa43845b7e3b4320c0a
+========
+guid: 1b8d251f9af63b746bf2f7ffe00ebb9b
+>>>>>>>> origin/zhang-dev:FPS Controller/Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

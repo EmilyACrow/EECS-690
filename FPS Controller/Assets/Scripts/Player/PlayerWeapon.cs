@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class PlayerWeapon : MonoBehaviour
+public class PlayerWeapon : NetworkBehaviour
 {
     [SerializeField] MachineGunItem _weapon;
     // [SerializeField] GameObject[] _weapons;
@@ -28,8 +29,9 @@ public class PlayerWeapon : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0)) {
-            _weapon.StopFiring();
+            if (Input.GetMouseButtonUp(0)) {
+                _weapon.StopFiring();
+            }
         }
         
     }
