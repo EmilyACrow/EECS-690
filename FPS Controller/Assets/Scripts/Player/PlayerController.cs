@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 defaultPositionRange = new Vector2(-4, 4);
     [SerializeField] private Vector3 defaultPosition = new Vector3(1,1,35);
     [SerializeField] private GameObject gun;
+    [SerializeField] private ActiveUI_Inventory _UIInventory;
 
     [Header("Movement Parameters")]
     [SerializeField] private float groundSpeedModifier = 7.0f;
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
     private float footstepTimer = 0;
     private float getCurrentOffset => baseStepSpeed;
 
+    private InventorySystem _inventory;
+
     private float xRotation = 0.0f;
     private CharacterController characterController;
     private PlayerInput input;
@@ -44,11 +47,6 @@ public class PlayerController : MonoBehaviour
     private float jumpVelocity;
     private Camera camera;
 
-    // Awake is called before Start
-    private void Awake() {
-        characterController = GetComponent<CharacterController>();
-        camera = Camera.main;
-    }
 
     //Struct for storing player inputs from update loop
     struct PlayerInput {
@@ -64,6 +62,12 @@ public class PlayerController : MonoBehaviour
             cursorLocked = false;
         }
     }
+
+    // Awake is called before Start
+    private void Awake() {
+        characterController = GetComponent<CharacterController>();
+        camera = Camera.main;
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -73,10 +77,6 @@ public class PlayerController : MonoBehaviour
             defaultPosition.y,
             Random.Range(defaultPositionRange.x, defaultPositionRange.y) + defaultPosition.z);
 
-        // camera.transform.position = transform.position;
-        // camera.transform.localRotation = transform.localRotation;
-
-        //camera.transform.SetParent(transform.Find("CameraTransform").transform, true);
         gun.transform.SetParent(camera.transform);
 
                    
@@ -84,8 +84,8 @@ public class PlayerController : MonoBehaviour
 
         jumpVelocity = Mathf.Sqrt(jumpHeight * gravity * -2);
 
-        //GameObject compass = GameObject.Find("UI/Compass");
-        //compass.Player = transform;
+        _inventory = new InventorySystem();
+        _UIInventory.setInventory(_inventory);
         
     }
 
