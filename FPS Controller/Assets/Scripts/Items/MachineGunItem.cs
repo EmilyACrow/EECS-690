@@ -14,11 +14,14 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     private bool _isFiring = false;
     private float _bulletLifetime = 2.0f;
     private float _muzzleFlareTime = 0.1f;
+    public int TotallAmmo;
+    public int CurrentAmmo;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        TotallAmmo = 999;
+        CurrentAmmo = 169;
     }
 
     // Update is called once per frame
