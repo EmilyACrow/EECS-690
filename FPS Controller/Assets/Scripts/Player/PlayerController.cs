@@ -1,28 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
 
-public class PlayerController : NetworkBehaviour
+public class PlayerController : MonoBehaviour
 {
-    private NetworkVariable<Vector3> networkMovement = new NetworkVariable<Vector3>();
-    private NetworkVariable<float> networkRotation = new NetworkVariable<float>();
-
     [SerializeField] private Vector2 defaultPositionRange = new Vector2(-4, 4);
-    private Vector3 defaultPosition = new Vector3(1,1,35);
+    [SerializeField] private Vector3 defaultPosition = new Vector3(1,1,35);
+    [SerializeField] private GameObject gun;
 
+    [Header("Movement Parameters")]
     [SerializeField] private float groundSpeedModifier = 7.0f;
     [SerializeField] private float airSpeedModifier = 3.0f;
-    [SerializeField] private float walkSpeed = 7.0f;
     [SerializeField] private float gravity = -9.8f;
     [SerializeField] private float stickToGroundForce = -1.0f;
     [SerializeField] private float jumpHeight = 2.0f;
     [SerializeField] private Transform ceilingCheck;
     [SerializeField] private float ceilingCheckDistance = 0.5f;
     [SerializeField] private LayerMask ceilingMask;
-    [SerializeField] private float _walkSpeed = 3.0f;
-    [SerializeField] private bool _useFootsteps = true;
-    [SerializeField] public bool _canMove = true;
+    [SerializeField] private bool useFootsteps = true;
+
+    [Header("Mouse Look Parameters")]
+    [SerializeField] private float mouseVertSensitivity = 70.0f;
+    [SerializeField] private float mouseHorzSensitivity = 15.0f;
+    [SerializeField] private float minXRotation = -70.0f;
+    [SerializeField] private float maxXRotation = 80.0f;
 
     [Header("Footstep Parameters")]
     [SerializeField] private float baseStepSpeed = 0.5f;
@@ -35,45 +36,56 @@ public class PlayerController : NetworkBehaviour
     private float footstepTimer = 0;
     private float getCurrentOffset => baseStepSpeed;
 
+    private float xRotation = 0.0f;
     private CharacterController characterController;
     private PlayerInput input;
     private Vector3 inputMovement = Vector3.zero;  
-    private float cachedRotation; 
     private float currentRotation;
     private float jumpVelocity;
+    private Camera camera;
 
     // Awake is called before Start
     private void Awake() {
         characterController = GetComponent<CharacterController>();
+        camera = Camera.main;
     }
 
-    private Vector3 _playerVelocity;
-    private float _xRotation = 0.0f;
-    private CharacterController _characterController;
-    private Camera _camera;
-    private float _jumpVelocity;
-    private PlayerInput _input;
-    private float _groundStickyVelocity = -1.0f;
-    private Vector2 _currentInput; //jake-dev
-    private Vector3 _moveDirection; //jake-dev
+    //Struct for storing player inputs from update loop
+    struct PlayerInput {
+        public float horizontal;
+        public float vertical;
+        public bool jump;
+        public bool cursorLocked;
+
+        public PlayerInput(float h, float v, bool j) {
+            this.horizontal = h;
+            this.vertical = v;
+            this.jump = j;
+            cursorLocked = false;
+        }
+    }
     
     // Start is called before the first frame update
     void Start()
     {
-        if (IsClient && IsOwner)
-        {
-            transform.position = new Vector3(Random.Range(defaultPositionRange.x, defaultPositionRange.y) + defaultPosition.x, 
-                defaultPosition.y,
-                Random.Range(defaultPositionRange.x, defaultPositionRange.y) + defaultPosition.z);
+
+        transform.position = new Vector3(Random.Range(defaultPositionRange.x, defaultPositionRange.y) + defaultPosition.x, 
+            defaultPosition.y,
+            Random.Range(defaultPositionRange.x, defaultPositionRange.y) + defaultPosition.z);
+
+        // camera.transform.position = transform.position;
+        // camera.transform.localRotation = transform.localRotation;
+
+        //camera.transform.SetParent(transform.Find("CameraTransform").transform, true);
+        gun.transform.SetParent(camera.transform);
+
                    
-            input = new PlayerInput(0.0f,0.0f,false);
+        input = new PlayerInput(0.0f,0.0f,false);
 
-            PlayerCameraFollow.Instance.FollowPlayer(transform.Find("CameraTransform"));
+        jumpVelocity = Mathf.Sqrt(jumpHeight * gravity * -2);
 
-            cachedRotation = Camera.main.transform.localEulerAngles.y;
-
-            jumpVelocity = Mathf.Sqrt(jumpHeight * gravity * -2);
-        }
+        //GameObject compass = GameObject.Find("UI/Compass");
+        //compass.Player = transform;
         
     }
 
@@ -88,22 +100,7 @@ public class PlayerController : NetworkBehaviour
         PlayerMovementHorizontal();
         PlayerMovementVertical();
         //Move player
-        _characterController.Move(_playerVelocity * Time.deltaTime);
-    }
-
-    private void GetPlayerInput() {
-        // WASD or joystick
-        _input.horizontal = Input.GetAxis("Horizontal");
-        _input.vertical = Input.GetAxis("Vertical");
-        _currentInput = new Vector2(_walkSpeed * Input.GetAxis("Vertical"), _walkSpeed * Input.GetAxis("Horizontal"));
-
-        //Spacebar or joystick axis 3
-        if(!_input.jump && Input.GetButtonDown("Jump")) {
-            _input.jump = true;
-        }
-        if(_useFootsteps){
-            Handle_Footsteps();
-        }
+        characterController.Move(inputMovement * Time.deltaTime);
     }
 
     private void PlayerMovementHorizontal() {
@@ -122,11 +119,6 @@ public class PlayerController : NetworkBehaviour
         inputMovement.x = movement.x;
         inputMovement.z = movement.z;      
     }    
-
-    private void UpdateServer() {
-        transform.position = new Vector3(transform.position.x + networkMovement.Value.x, transform.position.y,
-            transform.position.z + networkMovement.Value.z);
-    }
 
     private void PlayerMovementVertical() {
         if (!characterController.isGrounded) {
@@ -152,34 +144,30 @@ public class PlayerController : NetworkBehaviour
 
         //Spacebar or joystick axis 3
         if(!input.jump && Input.GetButtonDown("Jump")) {
-            input.inputDetected = true;
             input.jump = true;
-        }
-
-        if (!input.inputDetected && (input.horizontal != 0 || input.vertical != 0)) {
-            input.inputDetected = true;
         }
 
         if(Input.GetMouseButtonDown(1)) {
             ToggleMouse();
         }
-
-    }
-
-    private void GetCameraRotation() {
-        //get rotation of camera
-        currentRotation = Camera.main.transform.localEulerAngles.y;
-        RotatePlayer(Quaternion.Euler(0,currentRotation, 0));
-    }
-
-    private void RotatePlayer(Quaternion euler) {
-        transform.localRotation = euler;
-    }
-
-    private void PlayerMove() {
-        if (networkMovement.Value != Vector3.zero) {
-            characterController.Move(networkMovement.Value);
+        if(useFootsteps){
+            HandleFootsteps();
         }
+    }
+
+    private void PlayerLook() {
+        //Get mouse input
+        float mouseX = Input.GetAxis("Mouse X") * mouseVertSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseVertSensitivity * Time.deltaTime;
+
+        //Limit vertical look
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, minXRotation, maxXRotation);
+
+        //Move camera horizontally
+        camera.transform.localRotation = Quaternion.Euler(xRotation,0,0);
+        //Rotate player
+        transform.Rotate(Vector3.up * mouseX * mouseHorzSensitivity * Time.deltaTime); 
     }
 
     //If the player can jump, add the jump velocity to the player controller
@@ -198,14 +186,24 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
-    private void Handle_Footsteps(){
-        if(!_characterController.isGrounded) return;
-        if( _currentInput == Vector2.zero) return; //This is probably what needs to be changed. If velocity == zero, no sound should play
+    private void ToggleMouse() {
+        if(input.cursorLocked) {
+            Cursor.lockState = CursorLockMode.None;
+            input.cursorLocked = false;
+        } else {
+            Cursor.lockState = CursorLockMode.Locked;
+            input.cursorLocked = true;
+        }
+    }
+
+    private void HandleFootsteps(){
+        if(!characterController.isGrounded) return;
+        if(inputMovement.x == 0.0f && inputMovement.z == 0.0f) return; //This is probably what needs to be changed. If velocity == zero, no sound should play
 
         footstepTimer -= Time.deltaTime;
 
         if(footstepTimer <= 0){
-            if(Physics.Raycast(_camera.transform.position, Vector3.down, out RaycastHit hit, 3)){
+            if(Physics.Raycast(camera.transform.position, Vector3.down, out RaycastHit hit, 3)){
                 switch(hit.collider.tag){
                     case "Footsteps/GRASS":
                         footstepAudioSource.PlayOneShot(grassClips[Random.Range(0, grassClips.Length-1)]);
@@ -221,5 +219,6 @@ public class PlayerController : NetworkBehaviour
             footstepTimer = getCurrentOffset;
         }
     }
+
 
 }
