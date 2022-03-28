@@ -10,6 +10,7 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     [SerializeField] GameObject _muzzleFlash;
     [SerializeField] float _rateOfFire = 0.2f; //Fire rate seconds between shot
     [SerializeField] float _bulletVelocity = 1500;
+    [SerializeField] float gunshotVolume = 0.7f;
 
     private bool _isFiring = false;
     private float _bulletLifetime = 2.0f;
@@ -57,7 +58,7 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     IEnumerator Firing () {
         while(_isFiring) {
 
-            testAudio.PlayOneShot(testAudio2[Random.Range(0, testAudio2.Length-1)]); //Sound generation
+            testAudio.PlayOneShot(testAudio2[Random.Range(0, testAudio2.Length-1)], gunshotVolume); //Sound generation
 
             //Rotate muzzle flash
             _muzzleFlash.transform.eulerAngles = new Vector3(
