@@ -10,7 +10,7 @@ public class ActiveUI_Inventory : MonoBehaviour
     private Transform itemSlotSlot2;
     private Transform healthSlot;
 
-    private void Awake() {
+    private void Start() {
         itemSlotContainer = transform.Find("InventorySlots");
         itemSlotSlot1 = itemSlotContainer.Find("InventorySlot1");
         itemSlotSlot2 = itemSlotContainer.Find("InventorySlot2");
@@ -19,6 +19,7 @@ public class ActiveUI_Inventory : MonoBehaviour
     }
 
     public void setInventory(InventorySystem inventory) {
+        
         this.inventory=inventory;
         refreshInventoryItems();
     }

@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:FPS Controller/Assets/Materials/Images/Kansas_Jayhawk.png.meta
-guid: 51bb50edac4ecd74e962202553c5578f
-========
-guid: 014dc7f744dc1f14bbe02bf941c71b18
->>>>>>>> origin/zhang-dev:FPS Controller/Assets/CompassBackground.png.meta
+guid: 63f6a0aeee51ea440898f9e199692d5d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

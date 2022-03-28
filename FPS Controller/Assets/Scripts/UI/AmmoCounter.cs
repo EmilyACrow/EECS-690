@@ -5,23 +5,21 @@ using UnityEngine.UI;
 
 public class AmmoCounter : MonoBehaviour
 {
-    public TextMeshPro CurrentAmmo;
-    public TextMeshPro TotallAmmo;
+    public TextMeshProUGUI currentAmmo;
+    public TextMeshProUGUI totalAmmo;
+    public MachineGunItem gun;
     // Start is called before the first frame update
     void Start()
     {
-
-        MachineGunItem handl = gameObject.GetComponent(typeof(MachineGunItem)) as MachineGunItem;
-        TotallAmmo.text = handl.TotallAmmo.ToString();
-        CurrentAmmo.text = TotallAmmo.text;
+        totalAmmo.text = gun.totalAmmo.ToString();
+        currentAmmo.text = totalAmmo.text;
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        MachineGunItem handl = gameObject.GetComponent(typeof(MachineGunItem)) as MachineGunItem;
-        TotallAmmo.text = handl.TotallAmmo.ToString();
-        CurrentAmmo.text = handl.CurrentAmmo.ToString();
+        totalAmmo.text = gun.totalAmmo.ToString();
+        currentAmmo.text = gun.currentAmmo.ToString();
     }
 }
