@@ -15,6 +15,8 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     private bool _isFiring = false;
     private float _bulletLifetime = 2.0f;
     private float _muzzleFlareTime = 0.1f;
+    public int TotallAmmo;
+    public int CurrentAmmo;
 
     [SerializeField] private AudioSource testAudio = default;
     [SerializeField] private AudioClip[] testAudio2 = default;
@@ -23,6 +25,11 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     // Start is called before the first frame update
     void Start()
     {
+<<<<<<< HEAD
+=======
+        TotallAmmo = 999;
+        CurrentAmmo = 169;
+>>>>>>> origin/zhang-dev
     }
 
     // Update is called once per frame
