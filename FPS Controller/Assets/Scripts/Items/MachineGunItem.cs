@@ -8,6 +8,7 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     [SerializeField] GameObject _bullet;
     [SerializeField] GameObject _bulletSpawnPoint;
     [SerializeField] GameObject _muzzleFlash;
+
     [SerializeField] float _rateOfFire = 0.2f; //Fire rate seconds between shot
     [SerializeField] float _bulletVelocity = 1500;
     [SerializeField] float gunshotVolume = 0.7f;
@@ -24,8 +25,8 @@ public class MachineGunItem : MonoBehaviour, IWeapon
 
     // Start is called before the first frame update
     void Start() {
-        totalAmmo = 999;
-        currentAmmo = 169;
+        totalAmmo = 100;
+        currentAmmo = 20;
     }
 
     // Update is called once per frame
@@ -47,7 +48,6 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     }
 
     public void Reload() {
-
     }
 
     public void Activate() {
@@ -61,6 +61,11 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     IEnumerator Firing () {
         while(_isFiring) {
 
+            if (currentAmmo < 1){
+                StopFiring();
+                break;
+            }
+            currentAmmo -= 1;
             testAudio.PlayOneShot(testAudio2[Random.Range(0, testAudio2.Length-1)], gunshotVolume); //Sound generation
 
             //Rotate muzzle flash
