@@ -5,15 +5,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    void Start()
-    {
-        
-    }
-
-    void Update() {
-        
-    }
-
     void StartWithParameters(float time) {
         StartCoroutine(Cleanup(time));
     }

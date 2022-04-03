@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 defaultPositionRange = new Vector2(-4, 4);
     [SerializeField] private Vector3 defaultPosition = new Vector3(1,1,35);
     [SerializeField] private GameObject gun;
-    [SerializeField] private ActiveUI_Inventory UIInventory;
+    //[SerializeField] private ActiveUI_Inventory UIInventory;
 
     [Header("Movement Parameters")]
     [SerializeField] private float groundSpeedModifier = 7.0f;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     private float footstepTimer = 0;
     private float getCurrentOffset => baseStepSpeed;
 
-    private InventorySystem inventory;
+    //private InventorySystem inventory;
 
     private float xRotation = 0.0f;
     private CharacterController characterController;
@@ -78,14 +78,15 @@ public class PlayerController : MonoBehaviour
             Random.Range(defaultPositionRange.x, defaultPositionRange.y) + defaultPosition.z);
 
         gun.transform.SetParent(camera.transform);
+        gun.SetActive(true);
 
                    
         input = new PlayerInput(0.0f,0.0f,false);
 
         jumpVelocity = Mathf.Sqrt(jumpHeight * gravity * -2);
 
-        inventory = new InventorySystem();
-        UIInventory.setInventory(inventory);
+        // inventory = new InventorySystem();
+        // UIInventory.setInventory(inventory);
         
     }
 

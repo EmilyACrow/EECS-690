@@ -14,7 +14,6 @@ public class ActiveUI_Inventory : MonoBehaviour
         itemSlotContainer = transform.Find("InventorySlots");
         itemSlotSlot1 = itemSlotContainer.Find("InventorySlot1");
         itemSlotSlot2 = itemSlotContainer.Find("InventorySlot2");
-        healthSlot = itemSlotContainer.Find("InventorySlot3");
 
     }
 

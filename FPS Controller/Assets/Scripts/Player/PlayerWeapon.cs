@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-    [SerializeField] MachineGunItem _weapon;
+    [SerializeField] MachineGunItem weapon;
 
     // Update is called once per frame
     void Update()
@@ -12,14 +12,14 @@ public class PlayerWeapon : MonoBehaviour
         //Check if player is pressing fire button
         if(Input.GetMouseButtonDown(0)) {
             //If true, try to fire weapon
-            IWeapon canShoot = _weapon.GetComponent<IWeapon>();
+            IWeapon canShoot = weapon.GetComponent<IWeapon>();
             if (canShoot != null) { 
-                _weapon.Fire(); 
+                weapon.Fire(); 
             }
         }
 
         if (Input.GetMouseButtonUp(0)) {
-            _weapon.StopFiring();
+            weapon.StopFiring();
         }    
     }
 }

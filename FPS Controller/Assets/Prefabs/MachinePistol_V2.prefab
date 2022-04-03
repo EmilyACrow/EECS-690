@@ -132,6 +132,11 @@ MonoBehaviour:
   _muzzleFlash: {fileID: 8806482848326540282}
   _rateOfFire: 0.2
   _bulletVelocity: 1500
+  gunshotVolume: 0.7
+  totalAmmo: 0
+  currentAmmo: 0
+  testAudio: {fileID: 0}
+  testAudio2: []
 --- !u!1 &8806482848326540282
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +184,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8806482848326540282}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
