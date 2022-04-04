@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MachineGunItem : MonoBehaviour, IWeapon
 {
@@ -8,16 +9,20 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     [SerializeField] GameObject _bullet;
     [SerializeField] GameObject _bulletSpawnPoint;
     [SerializeField] GameObject _muzzleFlash;
+    [SerializeField] TextMeshProUGUI _ammoHeader;
 
     [SerializeField] float _rateOfFire = 0.2f; //Fire rate seconds between shot
     [SerializeField] float _bulletVelocity = 1500;
     [SerializeField] float gunshotVolume = 0.7f;
+
+    [SerializeField] float _reloadTime = 2.0f;
 
     private bool _isFiring = false;
     private float _bulletLifetime = 2.0f;
     private float _muzzleFlareTime = 0.1f;
     public int totalAmmo;
     public int currentAmmo;
+    private int magSize = 20;
 
     [SerializeField] private AudioSource testAudio = default;
     [SerializeField] private AudioClip[] testAudio2 = default;
@@ -26,13 +31,12 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     // Start is called before the first frame update
     void Start() {
         totalAmmo = 100;
-        currentAmmo = 20;
+        currentAmmo = magSize;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void Fire() {
@@ -48,6 +52,21 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     }
 
     public void Reload() {
+        _ammoHeader.text = "Reloading...";
+        //ADD RELOAD MECHANIC TO BE INPUT _RELOADTIME
+        
+        if (totalAmmo+currentAmmo < magSize){
+            _ammoHeader.text = "No Ammo..";
+            totalAmmo = 0;
+            return;
+        } else {
+        totalAmmo = totalAmmo - (magSize-currentAmmo);
+        if(totalAmmo <= 0){
+            return;
+        }
+        currentAmmo = magSize;
+        _ammoHeader.text = "Ammo";
+        }
     }
 
     public void Activate() {

@@ -22,6 +22,10 @@ public class PlayerWeapon : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0)) {
             weapon.StopFiring();
-        }    
+        }
+
+        if (Input.GetKeyDown("r")){
+            weapon.Reload();
+        }
     }
 }
