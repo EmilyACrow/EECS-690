@@ -15,7 +15,7 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     [SerializeField] float _bulletVelocity = 1500;
     [SerializeField] float gunshotVolume = 0.7f;
 
-    [SerializeField] float _reloadTime = 2.0f;
+    private float _reloadTime = 1; //Reload time in seconds
 
     private bool _isFiring = false;
     private float _bulletLifetime = 2.0f;
@@ -51,21 +51,37 @@ public class MachineGunItem : MonoBehaviour, IWeapon
         _isFiring = false;
     }
 
-    public void Reload() {
-        _ammoHeader.text = "Reloading...";
-        //ADD RELOAD MECHANIC TO BE INPUT _RELOADTIME
-        
-        if (totalAmmo+currentAmmo < magSize){
-            _ammoHeader.text = "No Ammo..";
+    private void ReloadHelper(){
+        if (totalAmmo+currentAmmo <= magSize){ //If remaining ammo is less than magazine size, just take leftovers into mag.
+            currentAmmo += totalAmmo;
+            _ammoHeader.color = new Color32(255,0,0,255);
             totalAmmo = 0;
             return;
-        } else {
-        totalAmmo = totalAmmo - (magSize-currentAmmo);
-        if(totalAmmo <= 0){
+        } 
+        else if(totalAmmo == 0){ //If no remaining ammo, keep value of current ammo count
+        _ammoHeader.text = "No Ammo";
             return;
-        }
+        } 
+        else {
+        //TODO:
+        //Add reload
+        //animation here 
+        totalAmmo = totalAmmo - (magSize-currentAmmo);
         currentAmmo = magSize;
         _ammoHeader.text = "Ammo";
+        _ammoHeader.color = new Color32(255,255,255,255);
+        }
+    }
+
+    public void Reload() {
+        if (currentAmmo == magSize){
+            _ammoHeader.text = "Clip full";
+            _ammoHeader.color = new Color32(255,0,0,255);
+            Invoke("ReloadHelper", _reloadTime);
+        } else {
+        _ammoHeader.text = "Reloading...";
+        _ammoHeader.color = new Color32(100,255,100,255);
+        Invoke("ReloadHelper", _reloadTime);
         }
     }
 
@@ -82,6 +98,7 @@ public class MachineGunItem : MonoBehaviour, IWeapon
 
             if (currentAmmo < 1){
                 StopFiring();
+                Invoke("Reload", 0.5f);
                 break;
             }
             currentAmmo -= 1;
