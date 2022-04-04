@@ -19,7 +19,7 @@ public class HealthBar : MonoBehaviour
     {
         if(true)
         {
-            HealthFillImage.fillAmount = defaultHealth/currenthealth;
+            HealthFillImage.fillAmount = currenthealth/defaultHealth;
         }
     }
 }
