@@ -26,22 +26,6 @@ public class PauseMenu : MonoBehaviour
             Pause();
           }
         }
-        /*
-        if (Input.GetKeyDown("q"))
-        {
-          if (isPaused)
-          {
-            gotoMenu();
-          }
-        }
-        if (Input.GetKeyDown("s"))
-        {
-          if (isPaused)
-          {
-            save();
-          }
-        }
-        */
     }
 
     public void Resume ()
@@ -51,6 +35,11 @@ public class PauseMenu : MonoBehaviour
       isPaused = false;
       Cursor.lockState = CursorLockMode.Locked;
       Cursor.visible = false;
+    }
+
+    public void Quit ()
+    {
+      Application.Quit();
     }
 
     void Pause ()
