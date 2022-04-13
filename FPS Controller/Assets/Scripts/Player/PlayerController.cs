@@ -93,8 +93,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(PauseMenu.isPaused == false){
             GetPlayerInput();
             PlayerLook();
+        }
     }
 
     private void FixedUpdate() {
