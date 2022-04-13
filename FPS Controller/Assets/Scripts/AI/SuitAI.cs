@@ -8,10 +8,15 @@ public class SuitAI : MonoBehaviour, INavigation
     [SerializeField] private UnityEngine.AI.NavMeshAgent agent;
     [SerializeField] private LayerMask groundLayer, playerLayer;
     [SerializeField] private Transform player;
+    public Waypoint target;
+
+    //States
+    enum State {Patrol, Idle, Alerted, Attacking};
+    private State currentState;
 
     //Patrolling
     public Vector3 walkPoint;
-    private bool walkPointSet, idling;
+    private bool waypointSet, doneIdling;
     public float walkPointRange = 4.0f;
     public float distanceToPoint = 0.0f;
 
@@ -28,6 +33,8 @@ public class SuitAI : MonoBehaviour, INavigation
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        currentState = State.Idle;
+        doneIdling = true;
     }
 
     // Update is called once per frame
@@ -36,41 +43,50 @@ public class SuitAI : MonoBehaviour, INavigation
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
-        if(!playerInAttackRange && !playerInSightRange) Patrol();
+        if(!playerInAttackRange && !playerInSightRange) 
+            if(doneIdling) Patrol();
         if(!playerInAttackRange && playerInSightRange)  Chase();
         if(playerInAttackRange && playerInSightRange)   Attack();   
-        if(walkPointSet) distanceToPoint = (transform.position - walkPoint).magnitude;
+        if(waypointSet) distanceToPoint = (transform.position - target.transform.position).magnitude;
     }
 
     private void Patrol() {
-        if(!walkPointSet) ChooseNewWalkPoint();
-        if (walkPointSet) agent.SetDestination(walkPoint);
+        if(!waypointSet) ChooseNewWaypoint();
+        if (waypointSet) agent.SetDestination(target.transform.position);
 
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+        Vector3 distanceToWalkPoint = transform.position - target.transform.position;
 
         //If distance to next point is <1, we have arrived
-        if (distanceToWalkPoint.magnitude < 1f && walkPointSet) {
-            walkPointSet = false;
+        if (distanceToWalkPoint.magnitude < 1.5f && waypointSet) {
+            currentState = State.Idle;
+            waypointSet = false;
+            doneIdling = false;
+            StartCoroutine(IdleFor(2.0f));
         }
     }
 
-    private void Idle() {
-
+    IEnumerator IdleFor(float seconds) {
+        yield return new WaitForSeconds(seconds);   
+        doneIdling = true;
     }
 
-    private void ChooseNewWalkPoint() {
-        float newX = transform.position.x + Random.Range(-walkPointRange, walkPointRange);
-        float newZ = transform.position.z + Random.Range(-walkPointRange, walkPointRange);
-        Vector3 newWalkPoint = new Vector3(newX, transform.position.y, newZ);
+    private void ChooseNewWaypoint() {
+        if(target.getNextWaypoint() == null) {
+            target = target.getPrevWaypoint();
+        } else {
+            target = target.getNextWaypoint();
+        }
+        waypointSet = true;
+        currentState = State.Patrol;
         
         //Check if the new point is actually ground
-        if(Physics.Raycast(newWalkPoint, -transform.up, 2f, groundLayer)) {
-            walkPoint = newWalkPoint;
-            walkPointSet = true;
-        }
-         else {
-             Debug.Log("Raycast failed");
-         }
+        // if(Physics.Raycast(newWalkPoint, -transform.up, 2f, groundLayer)) {
+        //     walkPoint = newWalkPoint;
+        //     waypointSet = true;
+        // }
+        // else {
+        //     Debug.Log("Raycast failed");
+        // }
     }
 
     private void Chase() {
