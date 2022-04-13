@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 defaultPositionRange = new Vector2(-4, 4);
     [SerializeField] private Vector3 defaultPosition = new Vector3(1,1,35);
     [SerializeField] private GameObject gun;
-    //[SerializeField] private ActiveUI_Inventory UIInventory;
 
     [Header("Movement Parameters")]
     [SerializeField] private float groundSpeedModifier = 7.0f;

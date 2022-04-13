@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] MachineGunItem weapon;
+    [SerializeField] NodeTypeA nodeA;
 
     // Update is called once per frame
     void Update()
@@ -26,6 +27,14 @@ public class PlayerWeapon : MonoBehaviour
 
         if (Input.GetKeyDown("r")){
             weapon.Reload();
+        }
+
+        if (Input.GetKeyDown("p")){
+            nodeA.PickupActivate();
+        }
+
+        if (Input.GetKeyDown("o")){
+            nodeA.ReleaseDeactivate();
         }
     }
 }
