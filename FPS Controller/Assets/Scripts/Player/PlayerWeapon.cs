@@ -13,13 +13,19 @@ public class PlayerWeapon : MonoBehaviour
         if(Input.GetMouseButtonDown(0)) {
             //If true, try to fire weapon
             IWeapon canShoot = weapon.GetComponent<IWeapon>();
-            if (canShoot != null) { 
-                weapon.Fire(); 
+            if (canShoot != null) {
+                if (weapon.currentAmmo > 0){
+                weapon.Fire();
+                }
             }
         }
 
         if (Input.GetMouseButtonUp(0)) {
             weapon.StopFiring();
-        }    
+        }
+
+        if (Input.GetKeyDown("r")){
+            weapon.Reload();
+        }
     }
 }
