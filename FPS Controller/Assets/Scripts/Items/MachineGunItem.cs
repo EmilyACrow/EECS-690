@@ -48,6 +48,10 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     public void StopFiring() {
         _muzzleFlash.GetComponent<Renderer>().enabled = false;
         _isFiring = false;
+
+        if (currentAmmo==0 && totalAmmo>0){
+            Invoke("Reload", 0.5f);
+        }
     }
 
     private void ReloadHelper(){
@@ -97,7 +101,6 @@ public class MachineGunItem : MonoBehaviour, IWeapon
 
             if (currentAmmo < 1){
                 StopFiring();
-                Invoke("Reload", 0.5f);
                 break;
             }
             currentAmmo -= 1;
