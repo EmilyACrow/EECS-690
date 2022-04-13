@@ -31,15 +31,14 @@ public class PlayerWeapon : MonoBehaviour
             weapon.Reload();
         }
 
-        if (distA < 3){
+        if (distA < 3 && nodeA._nodeModel.activeSelf){
              nodeA._nodeName.SetActive(true);
 
              if (Input.GetKeyDown("p")){
                 nodeA.PickupActivate();
             }
-            if (nodeA._nodeIcon.activeSelf){
+        } else {
             nodeA._nodeName.SetActive(false);
-         }
         }
 
 
