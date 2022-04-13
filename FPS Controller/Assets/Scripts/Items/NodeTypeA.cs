@@ -5,17 +5,20 @@ using TMPro;
 
 public class NodeTypeA : MonoBehaviour, IObject
 {
-    [SerializeField] private GameObject _nodeModel;
-    [SerializeField] private TextMeshProUGUI _nodeName;
-    [SerializeField] private GameObject nodeIcon;
+    [SerializeField] public GameObject _nodeModel;
+    [SerializeField] public GameObject _nodeName;
+    [SerializeField] public GameObject _nodeIcon;
    
     // Start is called before the first frame update
-
+    public GameObject getModel(){
+        return _nodeModel;
+    }
     void Awake(){
-        nodeIcon.SetActive(false);
     }
     void Start() {
-        
+        _nodeIcon.SetActive(false);
+        _nodeName.SetActive(false);
+        _nodeModel.SetActive(true);
     }
 
     // Update is called once per frame
@@ -25,13 +28,16 @@ public class NodeTypeA : MonoBehaviour, IObject
 
     // Activate is called when object is picked up
     public void PickupActivate() {
-        nodeIcon.SetActive(true);
+        _nodeIcon.SetActive(true);
         Debug.Log("ENABLED");
+        _nodeModel.SetActive(false);
     }
 
     // Deactivate called when object is 'thrown' away
     public void ReleaseDeactivate() {
-        nodeIcon.SetActive(false);
+        _nodeIcon.SetActive(false);
         Debug.Log("DISABLED");
+        _nodeModel.SetActive(true);
+        _nodeName.SetActive(false);
     }
 }

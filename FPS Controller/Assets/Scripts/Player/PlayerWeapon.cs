@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] MachineGunItem weapon;
-    [SerializeField] NodeTypeA nodeA;
+    [SerializeField] public NodeTypeA nodeA;
+    [SerializeField] private Transform wPlayer;
 
     // Update is called once per frame
     void Update()
     {
+        float distA = Vector3.Distance(nodeA.getModel().transform.position, wPlayer.position);
         //Check if player is pressing fire button
         if(Input.GetMouseButtonDown(0)) {
             //If true, try to fire weapon
@@ -29,12 +31,21 @@ public class PlayerWeapon : MonoBehaviour
             weapon.Reload();
         }
 
-        if (Input.GetKeyDown("p")){
-            nodeA.PickupActivate();
+        if (distA < 3){
+             nodeA._nodeName.SetActive(true);
+
+             if (Input.GetKeyDown("p")){
+                nodeA.PickupActivate();
+            }
+            if (nodeA._nodeIcon.activeSelf){
+            nodeA._nodeName.SetActive(false);
+         }
         }
+
 
         if (Input.GetKeyDown("o")){
             nodeA.ReleaseDeactivate();
+
         }
     }
 }
