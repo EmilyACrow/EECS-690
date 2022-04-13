@@ -16,7 +16,6 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     [SerializeField] float gunshotVolume = 0.7f;
 
     private float _reloadTime = 1; //Reload time in seconds
-
     private bool _isFiring = false;
     private float _bulletLifetime = 2.0f;
     private float _muzzleFlareTime = 0.1f;

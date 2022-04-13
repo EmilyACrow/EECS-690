@@ -111,12 +111,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  frontViewAngleThreshold: 60
-  sideViewAngleThreshold: 60
+  frontAngleThreshold: 60
+  sideAngleThreshold: 120
   frontView: {fileID: 2100000, guid: d946b1fe2ffb02a4a8639bc9da599c26, type: 2}
   leftView: {fileID: 2100000, guid: d946b1fe2ffb02a4a8639bc9da599c26, type: 2}
   rightView: {fileID: 2100000, guid: d946b1fe2ffb02a4a8639bc9da599c26, type: 2}
   backView: {fileID: 2100000, guid: d946b1fe2ffb02a4a8639bc9da599c26, type: 2}
+  aimOffset: 90
+  relativeAngle: 0
 --- !u!895512359 &252122638327924587
 AimConstraint:
   m_ObjectHideFlags: 0
