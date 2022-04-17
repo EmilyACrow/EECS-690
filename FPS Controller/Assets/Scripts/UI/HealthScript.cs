@@ -20,6 +20,7 @@ public class HealthScript : MonoBehaviour
         if(CurrentHealth <= 0) {
             // Destroy(gameObject);
             Debug.Log(name + "is Dead(destroy method is not implement)" );
+            CurrentHealth = TotalHealth; // debug testing
 
         }
     }
@@ -27,5 +28,7 @@ public class HealthScript : MonoBehaviour
     public void ApplyDamage(float damage)
     {
         CurrentHealth -= damage;
+        Debug.Log(name + " " + CurrentHealth + " / " + TotalHealth);
+
     }
 }

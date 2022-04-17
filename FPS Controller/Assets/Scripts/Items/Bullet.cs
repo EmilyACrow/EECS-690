@@ -24,11 +24,12 @@ public class Bullet : MonoBehaviour
         }
 
         if ((obj.gameObject.name == "Player") && (FromSelf == false) ) { //Set  [FromSelf == false] To [FromSelf == true] to enable self damage
-            Debug.Log(obj.gameObject.name + "is hit[self]" );
+            Debug.Log(obj.gameObject.name + "is hit" ); // in debuing message
             obj.gameObject.SendMessage("ApplyDamage", BulletDamage);
         }
         else if (obj.gameObject.name == "Suit") {
-            Debug.Log(obj.gameObject.name + "is not hit[Suit]" );
+            Debug.Log(obj.gameObject.name + "is hit" ); // in debuing message
+            obj.gameObject.SendMessage("ApplyDamage", BulletDamage);
         }
     }
 }
