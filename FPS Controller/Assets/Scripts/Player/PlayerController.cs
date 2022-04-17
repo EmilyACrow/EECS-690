@@ -35,7 +35,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip[] metalClips = default;
     [SerializeField] private AudioClip[] bareClips = default;
     private float footstepTimer = 0;
-    private float getCurrentOffset => baseStepSpeed;
+    private float getCurrentOffset => baseStepSpeed; 
+
+    [Header("PlayerHealth Parameters")]
+    public HealthScript PlayerHealthScript;
 
     //private InventorySystem inventory;
 
@@ -87,7 +90,7 @@ public class PlayerController : MonoBehaviour
 
         // inventory = new InventorySystem();
         // UIInventory.setInventory(inventory);
-        
+        PlayerHealthScript = GetComponent<HealthScript>();
     }
 
     // Update is called once per frame
