@@ -31,7 +31,7 @@ public class PlayerWeapon : MonoBehaviour
                 weapon.Reload();
             }
 
-            if (distA < 3){
+            if (true){//distA < 3){ //removed by Jake to fix compilation error
                  nodeA._nodeName.SetActive(true);
 
                  if (Input.GetKeyDown("p")){

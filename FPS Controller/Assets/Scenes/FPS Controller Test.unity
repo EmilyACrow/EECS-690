@@ -32384,7 +32384,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 986552226}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -33518,7 +33518,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1567218986}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1165434945815655652, guid: 81288dc50944dfb4fa66328ae2c95559, type: 3}
       propertyPath: m_Pivot.x
