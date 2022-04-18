@@ -2045,7 +2045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2833387317691934911, guid: 1b8d251f9af63b746bf2f7ffe00ebb9b, type: 3}
       propertyPath: groundSpeedModifier
-      value: 70
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2833387317691934911, guid: 1b8d251f9af63b746bf2f7ffe00ebb9b, type: 3}
       propertyPath: mouseHorzSensitivity
