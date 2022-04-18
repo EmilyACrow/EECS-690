@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float ceilingCheckDistance = 0.5f;
     [SerializeField] private LayerMask ceilingMask;
     [SerializeField] private bool useFootsteps = true;
+    [SerializeField] private float m_sprintSpeed = 3.0f;
 
     [Header("Mouse Look Parameters")]
     [SerializeField] private float mouseVertSensitivity = 70.0f;
@@ -25,16 +26,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float minXRotation = -70.0f;
     [SerializeField] private float maxXRotation = 80.0f;
 
+    private bool isSprinting => m_canSprint && (Input.GetKey(m_sprintKey));
+    private Vector2 m_currentInput;
     [Header("Footstep Parameters")]
+    [SerializeField] private bool m_canSprint = true;
+    [SerializeField] private KeyCode m_sprintKey = KeyCode.LeftShift;
     [SerializeField] private float baseStepSpeed = 0.5f;
-    [SerializeField] private float crouchStepMult = 1.5f;
-    [SerializeField] private float sprintStepMult = 0.6f;
+    [SerializeField] private float sprintStepMult = 0.3f;
     [SerializeField] private AudioSource footstepAudioSource = default;
     [SerializeField] private AudioClip[] grassClips = default;
     [SerializeField] private AudioClip[] metalClips = default;
     [SerializeField] private AudioClip[] bareClips = default;
     private float footstepTimer = 0;
-    private float getCurrentOffset => baseStepSpeed;
+    private float getCurrentOffset => isSprinting ? baseStepSpeed * sprintStepMult : baseStepSpeed;
 
     //private InventorySystem inventory;
 
@@ -112,7 +116,12 @@ public class PlayerController : MonoBehaviour
         movement = Vector3.ClampMagnitude(movement, 1.0f);
         if(characterController.isGrounded) {
             //Multiply speed vector by speed modifier so that it doesn't affect gravity
-            movement *= groundSpeedModifier;
+            if(isSprinting == true){
+                movement *= groundSpeedModifier * m_sprintSpeed;
+            }
+            else{
+                movement *= groundSpeedModifier;
+            }
         } else {
             movement *= airSpeedModifier;
         }
@@ -199,6 +208,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void HandleFootsteps(){
+
         if(!characterController.isGrounded) return;
         if(inputMovement.x == 0.0f && inputMovement.z == 0.0f) return; //This is probably what needs to be changed. If velocity == zero, no sound should play
 
