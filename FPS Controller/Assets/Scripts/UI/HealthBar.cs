@@ -1,9 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-<<<<<<< HEAD
-=======
 using System.Collections;
->>>>>>> origin/zhang-dev
 
 public class HealthBar : MonoBehaviour
 {
