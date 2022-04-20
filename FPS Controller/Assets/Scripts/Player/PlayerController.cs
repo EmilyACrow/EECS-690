@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour
     private float footstepTimer = 0;
     private float getCurrentOffset => isSprinting ? baseStepSpeed * sprintStepMult : baseStepSpeed;
 
+    [Header("PlayerHealth Parameters")]
+    public HealthScript PlayerHealthScript;
+
     //private InventorySystem inventory;
 
     private float xRotation = 0.0f;
@@ -90,7 +93,7 @@ public class PlayerController : MonoBehaviour
 
         // inventory = new InventorySystem();
         // UIInventory.setInventory(inventory);
-        
+        PlayerHealthScript = GetComponent<HealthScript>();
     }
 
     // Update is called once per frame
@@ -208,7 +211,6 @@ public class PlayerController : MonoBehaviour
     }
 
     private void HandleFootsteps(){
-
         if(!characterController.isGrounded) return;
         if(inputMovement.x == 0.0f && inputMovement.z == 0.0f) return; //This is probably what needs to be changed. If velocity == zero, no sound should play
 
