@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3076,7 +3076,7 @@ GameObject:
   m_Name: Stair Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 2
   m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &141878546
@@ -3149,7 +3149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 141878545}
   m_LocalRotation: {x: 0, y: 0, z: 0.33380687, w: 0.94264156}
-  m_LocalPosition: {x: -7.52, y: 1.28, z: 40.71}
+  m_LocalPosition: {x: -7.25, y: 1.5, z: 40.71}
   m_LocalScale: {x: 0.1, y: 4.8, z: 1.75}
   m_Children: []
   m_Father: {fileID: 0}
@@ -49453,11 +49453,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8003229631796245424, guid: 8bdaecd3ec39d984b85a4d9bfa4c0443, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.37345955
+      value: 0.37345958
       objectReference: {fileID: 0}
     - target: {fileID: 8003229631796245424, guid: 8bdaecd3ec39d984b85a4d9bfa4c0443, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.37345955
+      value: 0.37345958
       objectReference: {fileID: 0}
     - target: {fileID: 8003229631796245424, guid: 8bdaecd3ec39d984b85a4d9bfa4c0443, type: 3}
       propertyPath: m_LocalRotation.y

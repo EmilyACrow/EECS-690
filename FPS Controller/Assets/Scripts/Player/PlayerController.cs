@@ -13,12 +13,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float airSpeedModifier = 3.0f;
     [SerializeField] private float gravity = -9.8f;
     [SerializeField] private float stickToGroundForce = -1.0f;
+    [SerializeField] private float slopeForce = -50.0f;
     [SerializeField] private float jumpHeight = 2.0f;
     [SerializeField] private Transform ceilingCheck;
     [SerializeField] private float ceilingCheckDistance = 0.5f;
     [SerializeField] private LayerMask ceilingMask;
     [SerializeField] private bool useFootsteps = true;
     [SerializeField] private float m_sprintSpeed = 3.0f;
+    private float slopeRayLength = 2f;
 
     [Header("Mouse Look Parameters")]
     [SerializeField] private float mouseVertSensitivity = 70.0f;
@@ -108,8 +110,15 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate() {
         PlayerMovementHorizontal();
         PlayerMovementVertical();
+
+        if (!input.jump && inputMovement.x != 0 && inputMovement.z != 0 && onSlope()) {
+            inputMovement.y = slopeForce;   
+        }
+
         //Move player
         characterController.Move(inputMovement * Time.deltaTime);
+
+        
     }
 
     private void PlayerMovementHorizontal() {
@@ -149,6 +158,18 @@ public class PlayerController : MonoBehaviour
 
         //Check if ceiling collision
         CheckCeiling();
+    }
+
+    private bool onSlope() {
+        if (input.jump) { return false; }
+
+        RaycastHit ray;
+        if(Physics.Raycast(transform.position, Vector3.down, out ray, (GetComponent<CapsuleCollider>().height / 2) * slopeRayLength)) {
+            if(ray.normal != Vector3.up) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void GetPlayerInput() {
