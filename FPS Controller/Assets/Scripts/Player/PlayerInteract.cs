@@ -9,6 +9,7 @@ public class PlayerInteract : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if(PauseMenu.isPaused == false){
             if (true){//distA < 3){ //removed by Jake to fix compilation error
                  nodeA._nodeName.SetActive(true);
@@ -27,5 +28,6 @@ public class PlayerInteract : MonoBehaviour
 
             }
         } 
+        */
     }
 }
