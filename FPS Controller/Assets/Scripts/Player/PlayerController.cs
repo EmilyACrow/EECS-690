@@ -213,7 +213,6 @@ public class PlayerController : MonoBehaviour
         if(inputMovement.x == 0.0f && inputMovement.z == 0.0f) return; //This is probably what needs to be changed. If velocity == zero, no sound should play
 
         footstepTimer -= Time.deltaTime;
-
         if(footstepTimer <= 0){
             if(Physics.Raycast(camera.transform.position, Vector3.down, out RaycastHit hit, 3)){
                 switch(hit.collider.tag){
@@ -224,6 +223,7 @@ public class PlayerController : MonoBehaviour
                         footstepAudioSource.PlayOneShot(metalClips[Random.Range(0, metalClips.Length-1)]);
                         break;
                     default:
+                        footstepAudioSource.volume = 1.0f; //0.0-1.0f in terms of volume
                         footstepAudioSource.PlayOneShot(bareClips[Random.Range(0, bareClips.Length-1)]);
                         break;
                 }
