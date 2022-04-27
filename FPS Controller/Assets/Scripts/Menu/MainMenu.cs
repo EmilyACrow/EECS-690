@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour{
     public void StartTutorial(){
-        Debug.Log("Link tutorial scene!");
-        //SceneManager.LoadScene("Tutorial");
+        //Debug.Log("Link tutorial scene!");
+        SceneManager.LoadScene("Tutorial");
     }
     
     public void StartGame(){

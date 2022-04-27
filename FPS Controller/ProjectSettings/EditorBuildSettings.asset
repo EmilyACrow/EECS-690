@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FPS Controller Test.unity
     guid: 0c1ffdb115704fb46bf92fb15c95d720
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: d4d829f32c493d346b4ab33c4d174299
   m_configObjects: {}
