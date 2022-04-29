@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Footsteps/METAL
   - Footsteps/GRASS
-  - unit
   layers:
   - Default
   - TransparentFX

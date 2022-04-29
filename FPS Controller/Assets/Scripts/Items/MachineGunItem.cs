@@ -115,11 +115,9 @@ public class MachineGunItem : MonoBehaviour, IWeapon
                 _bulletSpawnPoint.transform.position, 
                 Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z));
             bullet.SendMessage("StartWithParameters", _bulletLifetime);
-            //set bullet damage
-            bullet.GetComponent<Bullet>().BulletDamage = 15f;
             //Fire bullet in the direction
             bullet.GetComponent<Rigidbody>().velocity = _bulletSpawnPoint.transform.forward * _bulletVelocity * Time.deltaTime;
-            yield return new WaitForSeconds(_rateOfFire); 
+            yield return new WaitForSeconds(_rateOfFire);
         }
         
     }

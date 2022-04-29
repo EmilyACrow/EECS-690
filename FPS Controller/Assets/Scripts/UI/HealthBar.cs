@@ -1,33 +1,25 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class HealthBar : MonoBehaviour
 {
     public Image HealthBackgroundImage;
     public Image HealthFillImage;
-	private PlayerController PlayerController;
-    private GameObject PLayer;
-    private HealthScript HealthScript;
+	public Transform Player;
+    public float defaultHealth;
+    public float currenthealth;
 
     // Start is called before the first frame update
     void Start()
     {
-        PLayer = GameObject.Find("Player");
-        PlayerController = PLayer.GetComponent<PlayerController>();
-        HealthScript = PlayerController.PlayerHealthScript;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(HealthScript != null)
+        if(true)
         {
-            // Debug.Log("Health update " );
-            HealthFillImage.fillAmount = HealthScript.CurrentHealth / HealthScript.TotalHealth;
-        }
-        else {
-            Debug.Log("HealthScript == null; gameobject name: " + gameObject.name );
+            HealthFillImage.fillAmount = currenthealth/defaultHealth;
         }
     }
 }

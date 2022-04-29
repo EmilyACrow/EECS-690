@@ -14,11 +14,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float airSpeedModifier = 3.0f;
     [SerializeField] private float gravity = -9.8f;
     [SerializeField] private float stickToGroundForce = -1.0f;
+    [SerializeField] private float slopeForce = -50.0f;
     [SerializeField] private float jumpHeight = 2.0f;
     [SerializeField] private Transform ceilingCheck;
     [SerializeField] private float ceilingCheckDistance = 0.5f;
     [SerializeField] private LayerMask ceilingMask;
     [SerializeField] private bool useFootsteps = true;
+    private float slopeRayLength = 2f;
 
     [Header("Mouse Look Parameters")]
     [SerializeField] private float mouseVertSensitivity = 70.0f;
@@ -35,10 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip[] metalClips = default;
     [SerializeField] private AudioClip[] bareClips = default;
     private float footstepTimer = 0;
-    private float getCurrentOffset => baseStepSpeed; 
-
-    [Header("PlayerHealth Parameters")]
-    public HealthScript PlayerHealthScript;
+    private float getCurrentOffset => baseStepSpeed;
 
     //private InventorySystem inventory;
 
@@ -90,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
         // inventory = new InventorySystem();
         // UIInventory.setInventory(inventory);
-        PlayerHealthScript = GetComponent<HealthScript>();
+        
     }
 
     // Update is called once per frame
@@ -105,8 +104,15 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate() {
         PlayerMovementHorizontal();
         PlayerMovementVertical();
+
+        if (!input.jump && inputMovement.x != 0 && inputMovement.z != 0 && onSlope()) {
+            inputMovement.y = slopeForce;   
+        }
+
         //Move player
         characterController.Move(inputMovement * Time.deltaTime);
+
+        
     }
 
     private void PlayerMovementHorizontal() {
@@ -141,6 +147,18 @@ public class PlayerController : MonoBehaviour
 
         //Check if ceiling collision
         CheckCeiling();
+    }
+
+    private bool onSlope() {
+        if (input.jump) { return false; }
+
+        RaycastHit ray;
+        if(Physics.Raycast(transform.position, Vector3.down, out ray, (GetComponent<CapsuleCollider>().height / 2) * slopeRayLength)) {
+            if(ray.normal != Vector3.up) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void GetPlayerInput() {
