@@ -130,13 +130,16 @@ MonoBehaviour:
   _bullet: {fileID: 3406506522631423799, guid: 76f7415127b5ea94abc5e26cb074f1e3, type: 3}
   _bulletSpawnPoint: {fileID: 6900072411717156053}
   _muzzleFlash: {fileID: 8806482848326540282}
+  _ammoHeader: {fileID: 0}
   _rateOfFire: 0.2
   _bulletVelocity: 1500
   gunshotVolume: 0.7
   totalAmmo: 0
   currentAmmo: 0
   testAudio: {fileID: 0}
-  testAudio2: []
+  testAudio2:
+  - {fileID: 8300000, guid: 9ac52c06624c7394d9ce059cb7294759, type: 3}
+  - {fileID: 8300000, guid: 8d00be59e858ad040b5798c7d989a226, type: 3}
 --- !u!1 &8806482848326540282
 GameObject:
   m_ObjectHideFlags: 0

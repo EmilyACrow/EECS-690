@@ -236,8 +236,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   player: {fileID: 0}
+  target: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 4
+  distanceToPoint: 0
   rateOfFire: 1000
   alreadyAttacked: 0
   sightRange: 2
