@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 1228899660395092894}
   - component: {fileID: 2160315129709081981}
   - component: {fileID: 1379587179737881751}
+  - component: {fileID: 3349113310974741705}
   m_Layer: 0
   m_Name: Suit
   m_TagString: Untagged
@@ -266,6 +267,20 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3349113310974741705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4698941942949190519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8883b31633420c4f8925904fdbb2a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TotalHealth: 100
+  CurrentHealth: 100
 --- !u!1 &6604647998707774172
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,9 +395,9 @@ MeshCollider:
   m_GameObject: {fileID: 6604647998707774172}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!895512359 &8697386938934458087

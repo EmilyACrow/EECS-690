@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 defaultPositionRange = new Vector2(-4, 4);
     [SerializeField] private Vector3 defaultPosition = new Vector3(1,1,35);
     [SerializeField] private GameObject gun;
-    //[SerializeField] private ActiveUI_Inventory UIInventory;
 
     [Header("Movement Parameters")]
     [SerializeField] private float groundSpeedModifier = 7.0f;
@@ -20,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float ceilingCheckDistance = 0.5f;
     [SerializeField] private LayerMask ceilingMask;
     [SerializeField] private bool useFootsteps = true;
+    [SerializeField] private float m_sprintSpeed = 3.0f;
     private float slopeRayLength = 2f;
 
     [Header("Mouse Look Parameters")]
@@ -28,16 +28,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float minXRotation = -70.0f;
     [SerializeField] private float maxXRotation = 80.0f;
 
+    private bool isSprinting => m_canSprint && (Input.GetKey(m_sprintKey));
+    private Vector2 m_currentInput;
     [Header("Footstep Parameters")]
+    [SerializeField] private bool m_canSprint = true;
+    [SerializeField] private KeyCode m_sprintKey = KeyCode.LeftShift;
     [SerializeField] private float baseStepSpeed = 0.5f;
-    [SerializeField] private float crouchStepMult = 1.5f;
-    [SerializeField] private float sprintStepMult = 0.6f;
+    [SerializeField] private float sprintStepMult = 0.3f;
     [SerializeField] private AudioSource footstepAudioSource = default;
     [SerializeField] private AudioClip[] grassClips = default;
     [SerializeField] private AudioClip[] metalClips = default;
     [SerializeField] private AudioClip[] bareClips = default;
     private float footstepTimer = 0;
-    private float getCurrentOffset => baseStepSpeed;
+    private float getCurrentOffset => isSprinting ? baseStepSpeed * sprintStepMult : baseStepSpeed;
+
+    [Header("PlayerHealth Parameters")]
+    public HealthScript PlayerHealthScript;
 
     //private InventorySystem inventory;
 
@@ -89,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
         // inventory = new InventorySystem();
         // UIInventory.setInventory(inventory);
-        
+        PlayerHealthScript = GetComponent<HealthScript>();
     }
 
     // Update is called once per frame
@@ -122,7 +128,12 @@ public class PlayerController : MonoBehaviour
         movement = Vector3.ClampMagnitude(movement, 1.0f);
         if(characterController.isGrounded) {
             //Multiply speed vector by speed modifier so that it doesn't affect gravity
-            movement *= groundSpeedModifier;
+            if(isSprinting == true){
+                movement *= groundSpeedModifier * m_sprintSpeed;
+            }
+            else{
+                movement *= groundSpeedModifier;
+            }
         } else {
             movement *= airSpeedModifier;
         }
@@ -225,7 +236,6 @@ public class PlayerController : MonoBehaviour
         if(inputMovement.x == 0.0f && inputMovement.z == 0.0f) return; //This is probably what needs to be changed. If velocity == zero, no sound should play
 
         footstepTimer -= Time.deltaTime;
-
         if(footstepTimer <= 0){
             if(Physics.Raycast(camera.transform.position, Vector3.down, out RaycastHit hit, 3)){
                 switch(hit.collider.tag){
@@ -236,6 +246,7 @@ public class PlayerController : MonoBehaviour
                         footstepAudioSource.PlayOneShot(metalClips[Random.Range(0, metalClips.Length-1)]);
                         break;
                     default:
+                        footstepAudioSource.volume = 1.0f; //0.0-1.0f in terms of volume
                         footstepAudioSource.PlayOneShot(bareClips[Random.Range(0, bareClips.Length-1)]);
                         break;
                 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Title_Gradient
   m_EditorClassIdentifier: 
   colorMode: 3
-  topLeft: {r: 1, g: 0, b: 0.8549242, a: 1}
-  topRight: {r: 1, g: 0, b: 0.85490197, a: 1}
-  bottomLeft: {r: 0.45490196, g: 0, b: 0.6745098, a: 1}
-  bottomRight: {r: 0.45490196, g: 0, b: 0.6745098, a: 1}
+  topLeft: {r: 0.9411765, g: 0.53333336, b: 0.18039216, a: 1}
+  topRight: {r: 0.9411765, g: 0.53333336, b: 0.18039216, a: 1}
+  bottomLeft: {r: 0.77254903, g: 0.2509804, b: 0.09411765, a: 1}
+  bottomRight: {r: 0.77254903, g: 0.2509804, b: 0.09411765, a: 1}

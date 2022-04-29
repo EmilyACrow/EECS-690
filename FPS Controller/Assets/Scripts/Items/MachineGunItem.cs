@@ -16,7 +16,6 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     [SerializeField] float gunshotVolume = 0.7f;
 
     private float _reloadTime = 1; //Reload time in seconds
-
     private bool _isFiring = false;
     private float _bulletLifetime = 2.0f;
     private float _muzzleFlareTime = 0.1f;
@@ -49,6 +48,10 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     public void StopFiring() {
         _muzzleFlash.GetComponent<Renderer>().enabled = false;
         _isFiring = false;
+
+        if (currentAmmo==0 && totalAmmo>0){
+            Invoke("Reload", 0.5f);
+        }
     }
 
     private void ReloadHelper(){
@@ -98,7 +101,6 @@ public class MachineGunItem : MonoBehaviour, IWeapon
 
             if (currentAmmo < 1){
                 StopFiring();
-                Invoke("Reload", 0.5f);
                 break;
             }
             currentAmmo -= 1;
@@ -115,9 +117,11 @@ public class MachineGunItem : MonoBehaviour, IWeapon
                 _bulletSpawnPoint.transform.position, 
                 Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z));
             bullet.SendMessage("StartWithParameters", _bulletLifetime);
+            //set bullet damage
+            bullet.GetComponent<Bullet>().BulletDamage = 15f;
             //Fire bullet in the direction
             bullet.GetComponent<Rigidbody>().velocity = _bulletSpawnPoint.transform.forward * _bulletVelocity * Time.deltaTime;
-            yield return new WaitForSeconds(_rateOfFire);
+            yield return new WaitForSeconds(_rateOfFire); 
         }
         
     }
