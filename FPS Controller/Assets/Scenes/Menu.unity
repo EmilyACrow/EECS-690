@@ -1279,6 +1279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   credit_video: {fileID: 1248942897}
+  credit_player: {fileID: 1318270294}
 --- !u!1 &1248942897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,12 +1292,12 @@ GameObject:
   - component: {fileID: 1248942900}
   - component: {fileID: 1248942899}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: CreditVideo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1248942898
 RectTransform:
   m_ObjectHideFlags: 0
