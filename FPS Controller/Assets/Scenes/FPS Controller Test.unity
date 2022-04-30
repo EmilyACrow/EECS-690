@@ -2744,8 +2744,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087a76800aba0b044a64dfc9a7a33f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volume_slider: {fileID: 0}
   masterVolume: 1
-  master_volume: 10
+  slider_value: 0
 --- !u!114 &139572450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2800,7 +2801,7 @@ MonoBehaviour:
       - m_Target: {fileID: 139572449}
         m_TargetAssemblyTypeName: VolumeController, Assembly-CSharp
         m_MethodName: AdjustVolume
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -23061,8 +23062,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087a76800aba0b044a64dfc9a7a33f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volume_slider: {fileID: 0}
   masterVolume: 1
-  master_volume: 10
+  slider_value: 0
 --- !u!81 &971821012
 AudioListener:
   m_ObjectHideFlags: 0
