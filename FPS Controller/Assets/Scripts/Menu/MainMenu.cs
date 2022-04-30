@@ -4,6 +4,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour{
+
+    public GameObject credit_video;
+
+    public UnityEngine.Video.VideoPlayer credit_player;
+
+    void Awake(){
+        Debug.Log("Video should be disabled!");
+        credit_video.SetActive(false);
+    }
+
+    void Update(){
+        if (Input.GetKeyDown(KeyCode.Escape) || (Input.GetKeyDown(KeyCode.Mouse0)))
+        {
+            credit_player.Stop();
+            credit_video.SetActive(false);
+        }
+    }
+
     public void StartTutorial(){
         SceneManager.LoadScene("Tutorial");
     }
@@ -15,6 +33,7 @@ public class MainMenu : MonoBehaviour{
 
     public void gotoCredits(){
         Debug.Log("Link credits scene!");
+        //credit_video.SetActive(true);
         //SceneManager.LoadScene("Credits");
     }
 
