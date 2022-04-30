@@ -5,13 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour{
     public void StartTutorial(){
-        //Debug.Log("Link tutorial scene!");
         SceneManager.LoadScene("Tutorial");
     }
     
     public void StartGame(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         //SceneManager.LoadScene("FPS Controller Test");
+    }
+
+    public void gotoCredits(){
+        Debug.Log("Link credits scene!");
+        //SceneManager.LoadScene("Credits");
     }
 
     public void QuitGame(){
