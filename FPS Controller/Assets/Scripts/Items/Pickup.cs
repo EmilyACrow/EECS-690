@@ -49,9 +49,11 @@ public class Pickup : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other){
-        totalNodes = totalNodes + 1;
-        Debug.Log("Picked up Node");
-        node.transform.position = new Vector3(-10, -10, -10);
+        if(other.gameObject.name == "Player"){
+            totalNodes = totalNodes + 1;
+            Debug.Log("Picked up Node");
+            node.transform.position = new Vector3(-10, -10, -10);
+        }
     }
 
 }
