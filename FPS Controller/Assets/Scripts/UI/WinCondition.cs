@@ -20,8 +20,13 @@ public class WinCondition : MonoBehaviour
         if(PlayerController.m_totalNodes == 5){
             isWin = true;
             displayWin();
-            PlayerController.m_totalNodes = 0;
+            reset();
         }
+    }
+
+    void reset(){
+        PlayerController.m_totalNodes = 0;
+        isWin = false;
     }
 
     void displayWin()
