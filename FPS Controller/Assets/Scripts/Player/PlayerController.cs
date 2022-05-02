@@ -42,8 +42,8 @@ public class PlayerController : MonoBehaviour
     private float footstepTimer = 0;
     private float getCurrentOffset => isSprinting ? baseStepSpeed * sprintStepMult : baseStepSpeed;
 
-    [Header("PlayerHealth Parameters")]
-    public HealthScript PlayerHealthScript;
+    // [Header("PlayerHealth Parameters")]
+    // [SerializeField] public HealthScript PlayerHealthScript;
 
     //private InventorySystem inventory;
 
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
         // inventory = new InventorySystem();
         // UIInventory.setInventory(inventory);
-        PlayerHealthScript = GetComponent<HealthScript>();
+        // PlayerHealthScript = GetComponent<HealthScript>();
     }
 
     // Update is called once per frame

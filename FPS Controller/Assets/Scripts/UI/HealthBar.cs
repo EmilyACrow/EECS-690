@@ -14,8 +14,7 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         PLayer = GameObject.Find("Player");
-        PlayerController = PLayer.GetComponent<PlayerController>();
-        HealthScript = PlayerController.PlayerHealthScript;
+        HealthScript = PLayer.GetComponent<HealthScript>();
     }
 
     // Update is called once per frame
