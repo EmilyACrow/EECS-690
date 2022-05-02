@@ -44,8 +44,8 @@ public class PlayerController : MonoBehaviour
 
     public static int m_totalNodes = 0;
 
-    [Header("PlayerHealth Parameters")]
-    public HealthScript PlayerHealthScript;
+    // [Header("PlayerHealth Parameters")]
+    // public HealthScript PlayerHealthScript;
 
     //private InventorySystem inventory;
 
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
 
         // inventory = new InventorySystem();
         // UIInventory.setInventory(inventory);
-        PlayerHealthScript = GetComponent<HealthScript>();
+        // PlayerHealthScript = GetComponent<HealthScript>();
     }
 
     // Update is called once per frame
