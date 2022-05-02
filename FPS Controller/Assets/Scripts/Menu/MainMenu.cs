@@ -23,7 +23,8 @@ public class MainMenu : MonoBehaviour{
     }
 
     public void StartTutorial(){
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        //SceneManager.LoadScene("Tutorial");
     }
     
     public void StartGame(){
