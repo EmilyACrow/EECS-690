@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
     private float footstepTimer = 0;
     private float getCurrentOffset => isSprinting ? baseStepSpeed * sprintStepMult : baseStepSpeed;
 
+    public static int m_totalNodes = 0;
+
     [Header("PlayerHealth Parameters")]
     public HealthScript PlayerHealthScript;
 
