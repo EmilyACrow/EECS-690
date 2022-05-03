@@ -14,13 +14,15 @@ public class AudioOutput : MonoBehaviour
 
     void OnTriggerEnter(Collider other){
         var color = GetComponent<Renderer>();
-        if(played == false){
-            sound.Play();
-            played = true;
-            color.material.SetColor("_Color", Color.red);
-            StartCoroutine(timer());
-            //next_clip.SetActive(true);
-            current_clip.transform.position = new Vector3(10, 10, 10);
+        if(other.gameObject.name == "Player"){
+            if(played == false){
+                sound.Play();
+                played = true;
+                color.material.SetColor("_Color", Color.red);
+                StartCoroutine(timer());
+                //next_clip.SetActive(true);
+                current_clip.transform.position = new Vector3(10, 10, 10);
+            }
         }
     }
 
