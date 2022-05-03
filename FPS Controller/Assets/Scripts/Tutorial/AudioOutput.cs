@@ -20,7 +20,6 @@ public class AudioOutput : MonoBehaviour
                 played = true;
                 color.material.SetColor("_Color", Color.red);
                 StartCoroutine(timer());
-                //next_clip.SetActive(true);
                 current_clip.transform.position = new Vector3(10, 10, 10);
             }
         }
