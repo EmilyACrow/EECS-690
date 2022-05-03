@@ -44,8 +44,8 @@ public class PlayerController : MonoBehaviour
 
     public static int m_totalNodes = 0;
 
-    // [Header("PlayerHealth Parameters")]
-    // public HealthScript PlayerHealthScript;
+    [Header("PlayerHealth Parameters")]
+    public HealthScript PlayerHealthScript;
 
     //private InventorySystem inventory;
 
