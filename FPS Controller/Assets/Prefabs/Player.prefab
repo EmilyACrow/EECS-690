@@ -207,7 +207,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: edf1c9d565a4d0847bca3c2f0c240576, type: 3}
   bareClips:
   - {fileID: 8300000, guid: ad747977a8c29f5478b7d388d5790bf0, type: 3}
-  PlayerHealthScript: {fileID: 0}
 --- !u!143 &2833387317691934904
 CharacterController:
   m_ObjectHideFlags: 0
@@ -410,6 +409,18 @@ PrefabInstance:
     - target: {fileID: 7378884098527963871, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
       propertyPath: m_Name
       value: MachinePistol_V2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725497387027623157, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725497387027623157, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725497387027623157, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.48
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29e4e821375d87b408f8221483b38f97, type: 3}

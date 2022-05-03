@@ -237,14 +237,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   player: {fileID: 0}
+  maxHealth: 100
   target: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 4
   distanceToPoint: 0
   rateOfFire: 1000
   alreadyAttacked: 0
-  sightRange: 2
-  attackRange: 1
+  sightRange: 20
+  attackRange: 8
 --- !u!195 &1379587179737881751
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -274,13 +275,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4698941942949190519}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8883b31633420c4f8925904fdbb2a36, type: 3}
+  m_Script: {fileID: 11500000, guid: d4754c2180989264e9c49555c49436e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalHealth: 100
-  CurrentHealth: 100
+  agent: {fileID: 1379587179737881751}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  player: {fileID: 0}
+  maxHealth: 0
+  target: {fileID: 0}
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 4
+  distanceToPoint: 0
+  rateOfFire: 500
+  alreadyAttacked: 0
+  sightRange: 20
+  attackRange: 8
 --- !u!1 &6604647998707774172
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +400,7 @@ MonoBehaviour:
   leftView: {fileID: 2100000, guid: 4c9808d722cf25240a3879c83a8d9c8c, type: 2}
   rightView: {fileID: 2100000, guid: 97a85657cc358a84d9b71344c1939f37, type: 2}
   backView: {fileID: 2100000, guid: 0956b5f9b06a9b44bb72a88a4e6ea445, type: 2}
-  aimOffset: 90
+  aimOffset: 0
   relativeAngle: 0
 --- !u!64 &1148618149698797482
 MeshCollider:

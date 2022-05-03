@@ -8,7 +8,9 @@ public class SuitAI : MonoBehaviour, INavigation
     [SerializeField] private UnityEngine.AI.NavMeshAgent agent;
     [SerializeField] private LayerMask groundLayer, playerLayer;
     [SerializeField] private Transform player;
+    [SerializeField] private float maxHealth;
     public Waypoint target;
+    private float currentHealth;
 
     //States
     enum State {Patrol, Idle, Alerted, Attacking};
@@ -35,11 +37,15 @@ public class SuitAI : MonoBehaviour, INavigation
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         currentState = State.Idle;
         doneIdling = true;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(currentHealth <= 0) {
+            gameObject.SetActiveRecursively(false);
+        }
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
@@ -71,22 +77,9 @@ public class SuitAI : MonoBehaviour, INavigation
     }
 
     private void ChooseNewWaypoint() {
-        if(target.getNextWaypoint() == null) {
-            target = target.getPrevWaypoint();
-        } else {
-            target = target.getNextWaypoint();
-        }
+        target = PathManager.Instance.getNextWaypoint(target);
         waypointSet = true;
         currentState = State.Patrol;
-        
-        //Check if the new point is actually ground
-        // if(Physics.Raycast(newWalkPoint, -transform.up, 2f, groundLayer)) {
-        //     walkPoint = newWalkPoint;
-        //     waypointSet = true;
-        // }
-        // else {
-        //     Debug.Log("Raycast failed");
-        // }
     }
 
     private void Chase() {
@@ -116,6 +109,10 @@ public class SuitAI : MonoBehaviour, INavigation
 
     private void CreateBullet(Quaternion angle, float velocity, float lifetime) {
 
+    }
+
+    public void ApplyDamage(float amount) {
+        currentHealth -= amount;
     }
 
 
