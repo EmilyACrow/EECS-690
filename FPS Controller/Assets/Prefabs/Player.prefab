@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 2833387317691934905}
   - component: {fileID: 1732690408030141902}
   - component: {fileID: 7882128596961451081}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -421,6 +421,34 @@ PrefabInstance:
     - target: {fileID: 7725497387027623157, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725497387027623157, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725497387027623157, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725497387027623157, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725497387027623157, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725497387027623157, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725497387027623157, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725497387027623157, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29e4e821375d87b408f8221483b38f97, type: 3}
