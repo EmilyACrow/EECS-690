@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
             Debug.Log(obj.gameObject.name + "is hit" ); // in debuing message
             obj.gameObject.SendMessage("ApplyDamage", BulletDamage);
         }
-        else if (obj.gameObject.name == "Suit") {
+        else if (obj.gameObject.tag == "AI") {
             Debug.Log(obj.gameObject.name + "is hit" ); // in debuing message
             obj.gameObject.SendMessage("ApplyDamage", BulletDamage);
         }

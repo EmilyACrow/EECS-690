@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioOutput : MonoBehaviour
 {
     public AudioSource sound;
-    public bool played = false;
+    private bool played = false;
 
     void OnTriggerEnter(Collider other){
         var color = GetComponent<Renderer>();
