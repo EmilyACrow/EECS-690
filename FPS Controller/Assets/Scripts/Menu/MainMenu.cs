@@ -13,6 +13,10 @@ public class MainMenu : MonoBehaviour{
     public GameObject credit_video;
 
     public UnityEngine.Video.VideoPlayer credit_player;
+    
+    public GameObject intro_video;
+
+    public UnityEngine.Video.VideoPlayer intro_player;
 
     public VideoPlayer intro_player;
 
@@ -28,12 +32,21 @@ public class MainMenu : MonoBehaviour{
     void Update(){
         if (Input.GetKeyDown(KeyCode.Escape) || (Input.GetKeyDown(KeyCode.Mouse0)))
         {
+<<<<<<< Updated upstream
             if(credit_video.active){
             credit_player.Stop();
             credit_video.SetActive(false);
             }
             if(intro_video.active){
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+=======
+            if(credit_video.activeSelf){
+            credit_player.Stop();
+            credit_video.SetActive(false);
+            }
+            if(intro_video.activeSelf){
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 4);
+>>>>>>> Stashed changes
                 intro_player.Stop();
                 intro_video.SetActive(false);
             }
@@ -44,10 +57,14 @@ public class MainMenu : MonoBehaviour{
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         //SceneManager.LoadScene("Tutorial");
     }
+<<<<<<< Updated upstream
 
     public void doIntro(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
+=======
+    
+>>>>>>> Stashed changes
 
     public void gotoCredits(){
         Debug.Log("Link credits scene!");

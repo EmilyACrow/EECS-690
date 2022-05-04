@@ -17,7 +17,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: d4d829f32c493d346b4ab33c4d174299
   - enabled: 1
+<<<<<<< Updated upstream
     path: Assets/Scenes/Intro.unity
     guid: 10a65a790aab2494b8c4a5a328ac096f
+>>>>>>> Stashed changes
+=======
+    path: Assets/Intro.unity
+    guid: 0bd381860fecb294fadf6a6f30bb5107
+  - enabled: 1
+    path: Assets/Scenes/SnapsLevel.unity
+    guid: 1514f060688ca75458f91c89b7c45731
 >>>>>>> Stashed changes
   m_configObjects: {}

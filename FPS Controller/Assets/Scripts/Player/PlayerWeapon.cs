@@ -5,9 +5,12 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] MachineGunItem weapon;
+<<<<<<< Updated upstream
     [SerializeField] public NodeTypeA nodeA;
     [SerializeField] private Transform wPlayer;
 
+=======
+>>>>>>> Stashed changes
     // Update is called once per frame
     void Update()
     {
@@ -23,6 +26,7 @@ public class PlayerWeapon : MonoBehaviour
             }
         }
 
+<<<<<<< Updated upstream
         if (Input.GetMouseButtonUp(0)) {
             weapon.StopFiring();
         }
@@ -36,6 +40,18 @@ public class PlayerWeapon : MonoBehaviour
 
              if (Input.GetKeyDown("p")){
                 nodeA.PickupActivate();
+=======
+                if (Input.GetMouseButtonUp(0)) {
+                    weapon.StopFiring();
+                }
+                if (Input.GetKeyDown("r")){
+                    weapon.StopFiring();
+                    MachineGunItem myW = weapon.GetComponent<MachineGunItem>();
+                    myW._model.transform.position = myW._model.transform.position - new Vector3(0,(float)0.2,0);
+                    weapon.Reload();
+                    Invoke("resetPos", (float)myW._reloadTime);
+                }
+>>>>>>> Stashed changes
             }
         } else {
             nodeA._nodeName.SetActive(false);
@@ -46,5 +62,9 @@ public class PlayerWeapon : MonoBehaviour
             nodeA.ReleaseDeactivate();
 
         }
+    }
+    void resetPos(){
+        MachineGunItem myW = weapon.GetComponent<MachineGunItem>();
+        myW._model.transform.position = myW._model.transform.position + new Vector3(0,(float)0.2,0);
     }
 }
