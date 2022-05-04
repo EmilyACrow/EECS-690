@@ -17,7 +17,7 @@ public class MachineGunItem : MonoBehaviour, IWeapon
 
     private float _reloadTime = 1; //Reload time in seconds
     private bool _isFiring = false;
-    private float _bulletLifetime = 2.0f;
+    private float _bulletLifetime = 1.0f;
     private float _muzzleFlareTime = 0.1f;
     public int totalAmmo;
     public int currentAmmo;
