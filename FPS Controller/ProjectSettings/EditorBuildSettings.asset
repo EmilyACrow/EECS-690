@@ -8,10 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 9f4acd373a12faa43845b7e3b4320c0a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FPS Controller Test.unity
     guid: 0c1ffdb115704fb46bf92fb15c95d720
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: d4d829f32c493d346b4ab33c4d174299
+  - enabled: 1
+    path: Assets/Scenes/SnapsLevel.unity
+    guid: 1514f060688ca75458f91c89b7c45731
   m_configObjects: {}
