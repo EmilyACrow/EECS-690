@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
             this.horizontal = h;
             this.vertical = v;
             this.jump = j;
-            cursorLocked = false;
+            cursorLocked = true;
         }
     }
 
@@ -94,6 +94,7 @@ public class PlayerController : MonoBehaviour
         input = new PlayerInput(0.0f,0.0f,false);
 
         jumpVelocity = Mathf.Sqrt(jumpHeight * gravity * -2);
+        Cursor.lockState = CursorLockMode.Locked;
 
         // inventory = new InventorySystem();
         // UIInventory.setInventory(inventory);
