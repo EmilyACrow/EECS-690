@@ -9,6 +9,7 @@ TagManager:
   - unit
   - Tutorial
   - AI
+  - Waypoint
   layers:
   - Default
   - TransparentFX

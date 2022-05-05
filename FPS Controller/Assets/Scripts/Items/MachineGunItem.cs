@@ -29,7 +29,7 @@ public class MachineGunItem : MonoBehaviour, IWeapon
 
     // Start is called before the first frame update
     void Start() {
-        totalAmmo = 100;
+        totalAmmo = 200;
         currentAmmo = magSize;
     }
 
@@ -118,7 +118,7 @@ public class MachineGunItem : MonoBehaviour, IWeapon
                 Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z));
             bullet.SendMessage("StartWithParameters", _bulletLifetime);
             //set bullet damage
-            bullet.GetComponent<Bullet>().BulletDamage = 15f;
+            bullet.GetComponent<Bullet>().BulletDamage = 20f;
             //Fire bullet in the direction
             bullet.GetComponent<Rigidbody>().velocity = _bulletSpawnPoint.transform.forward * _bulletVelocity * Time.deltaTime;
             yield return new WaitForSeconds(_rateOfFire); 
