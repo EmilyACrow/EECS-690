@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision obj) {
-
+        Debug.Log("Collision");
         foreach (ContactPoint contact in obj.contacts)
         {
             Debug.DrawRay(contact.point, contact.normal, Color.white);
@@ -31,5 +31,7 @@ public class Bullet : MonoBehaviour
             Debug.Log(obj.gameObject.name + "is hit" ); // in debuing message
             obj.gameObject.SendMessage("ApplyDamage", BulletDamage);
         }
+
+        Destroy(gameObject);
     }
 }
