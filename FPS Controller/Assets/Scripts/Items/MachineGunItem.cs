@@ -5,7 +5,7 @@ using TMPro;
 
 public class MachineGunItem : MonoBehaviour, IWeapon
 {
-    [SerializeField] public GameObject _model;
+    [SerializeField] GameObject _model;
     [SerializeField] GameObject _bullet;
     [SerializeField] GameObject _bulletSpawnPoint;
     [SerializeField] GameObject _muzzleFlash;
@@ -15,8 +15,7 @@ public class MachineGunItem : MonoBehaviour, IWeapon
     [SerializeField] float _bulletVelocity = 1500;
     [SerializeField] float gunshotVolume = 0.7f;
 
-
-    public float _reloadTime = 1; //Reload time in seconds
+    private float _reloadTime = 1; //Reload time in seconds
     private bool _isFiring = false;
     private float _bulletLifetime = 1.0f;
     private float _muzzleFlareTime = 0.1f;
@@ -67,6 +66,9 @@ public class MachineGunItem : MonoBehaviour, IWeapon
             return;
         } 
         else {
+        //TODO:
+        //Add reload
+        //animation here 
         totalAmmo = totalAmmo - (magSize-currentAmmo);
         currentAmmo = magSize;
         _ammoHeader.text = "Ammo";
@@ -96,6 +98,7 @@ public class MachineGunItem : MonoBehaviour, IWeapon
 
     IEnumerator Firing () {
         while(_isFiring) {
+
             if (currentAmmo < 1){
                 StopFiring();
                 break;

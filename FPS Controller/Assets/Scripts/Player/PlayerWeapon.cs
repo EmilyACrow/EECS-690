@@ -6,8 +6,6 @@ public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] MachineGunItem weapon;
 
-=======
->>>>>>> Stashed changes
     // Update is called once per frame
     void Update()
     {
@@ -34,9 +32,5 @@ public class PlayerWeapon : MonoBehaviour
             }
         }
 
-    }
-    void resetPos(){
-        MachineGunItem myW = weapon.GetComponent<MachineGunItem>();
-        myW._model.transform.position = myW._model.transform.position + new Vector3(0,(float)0.2,0);
     }
 }
