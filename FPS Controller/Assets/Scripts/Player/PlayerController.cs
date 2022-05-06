@@ -205,9 +205,9 @@ public class PlayerController : MonoBehaviour
         camera.transform.localRotation = Quaternion.Euler(xRotation,0,0);
         //Rotate player
 
-        //transform.Rotate(Vector3.up * mouseX * mouseHorzSensitivity * Time.deltaTime);
+        transform.Rotate(Vector3.up * mouseX * mouseHorzSensitivity * Time.deltaTime);
 
-        transform.Rotate(Vector3.up * mouseX * (mouseHorzSensitivity*25) * Time.deltaTime); //JAKE edited this, from the original above, since turning was an issue
+        // transform.Rotate(Vector3.up * mouseX * (mouseHorzSensitivity*25) * Time.deltaTime); //JAKE edited this, from the original above, since turning was an issue
     }
 
     //If the player can jump, add the jump velocity to the player controller

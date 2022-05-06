@@ -7,9 +7,10 @@ public class PathManager : Singleton<PathManager>
     [SerializeField] private List<Waypoint> waypoints;
     // Start is called before the first frame update
     void Start() {
-        var foundWaypoints = FindObjectsOfType<Waypoint>();
+        var foundWaypoints = GameObject.FindGameObjectsWithTag("Waypoint");
         for (int i = 0; i < foundWaypoints.Length; i++) {
-            waypoints.Add(foundWaypoints[i]);
+            var waypointObj = foundWaypoints[i].GetComponent<Waypoint>();
+            waypoints.Add(waypointObj);
         }
     }
 

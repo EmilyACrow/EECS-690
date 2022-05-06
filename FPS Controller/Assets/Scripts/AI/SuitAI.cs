@@ -51,8 +51,8 @@ public class SuitAI : MonoBehaviour, INavigation
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
-        if(playerInSightRange) { Debug.Log("Player in sight range..."); }
-        if(playerInAttackRange) { Debug.Log("Player in attack range..."); }
+        // if(playerInSightRange) { Debug.Log("Player in sight range..."); }
+        // if(playerInAttackRange) { Debug.Log("Player in attack range..."); }
 
         if(!playerInAttackRange && !playerInSightRange) 
             if(doneIdling) Patrol();

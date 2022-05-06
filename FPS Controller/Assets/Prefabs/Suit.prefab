@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8729996327498521918}
   m_Layer: 0
   m_Name: Shadow
-  m_TagString: Untagged
+  m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,7 +92,7 @@ MeshCollider:
   m_GameObject: {fileID: 1370637588449753082}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -128,12 +128,11 @@ GameObject:
   - component: {fileID: 899060480055134309}
   - component: {fileID: 1579710653763854657}
   - component: {fileID: 1228899660395092894}
-  - component: {fileID: 2160315129709081981}
   - component: {fileID: 1379587179737881751}
   - component: {fileID: 3349113310974741705}
   m_Layer: 0
   m_Name: Suit
-  m_TagString: Untagged
+  m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,35 +216,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2160315129709081981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4698941942949190519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4754c2180989264e9c49555c49436e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 1379587179737881751}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  player: {fileID: 0}
-  maxHealth: 100
-  target: {fileID: 0}
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 4
-  distanceToPoint: 0
-  rateOfFire: 1000
-  alreadyAttacked: 0
-  sightRange: 20
-  attackRange: 8
 --- !u!195 &1379587179737881751
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -275,7 +245,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4698941942949190519}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4754c2180989264e9c49555c49436e2, type: 3}
   m_Name: 
@@ -313,7 +283,7 @@ GameObject:
   - component: {fileID: 8697386938934458087}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -411,7 +381,7 @@ MeshCollider:
   m_GameObject: {fileID: 6604647998707774172}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30

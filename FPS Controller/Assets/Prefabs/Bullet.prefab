@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387c3acf5cbf08a438dee65ba8eb218b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletDamage: 0
+  BulletDamage: 25
   FromSelf: 1
 --- !u!108 &3427511428901737803
 Light:
